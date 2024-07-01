@@ -6,6 +6,8 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Atma:wght@300;400;500;600;700&family=Jost:ital,wght@0,100..900;1,100..900&family=Lexend+Deca:wght@100..900&family=Playwrite+IT+Moderna:wght@100..400&family=Raleway:ital,wght@0,100..900;1,100..900&family=Voces&display=swap" rel="stylesheet"> 
+<link rel="stylesheet" href="https://userinfomaster.000webhostapp.com/host/style.css ">
+    <script src="https://userinfomaster.000webhostapp.com/host/index.js " defer></script>
     
 <style>
 
@@ -255,24 +257,7 @@ hr{
 
 
 
-.fr {
-    margin: 0;
-    font-family: Arial, sans-serif;
-}
 
-footer {
-    background-color: #001427;
-    color: #fff;
-    padding: 20px;
-    text-align: center;
-}
-
-.left, .right {
-    display: inline-block;
-    vertical-align: top;
-}
-
-.left {
     margin-right: 100px;
     margin-bottom: 20px; /* Move image downwards */
 }
@@ -345,28 +330,6 @@ footer p {
 
 
 @media(max-width: 768px) {
-    .header {
-        height: 250px;
-    }
-
-    .nav-links ul li {
-        padding: 8px 6px;
-    }
-
-    .text-box h1 {
-        font-size: 30px;
-        padding-bottom: 20px;
-    }
-
-    .text-box p {
-        font-size: 12px;
-        padding: 10px 0 20px;
-    }
-
-    .hero-btn {
-        padding: 10px 24px;
-        font-size: 12px;
-    }
 
     .cl {
         width: 80%;
@@ -408,25 +371,10 @@ footer p {
         padding-left: 10px;
     }
 
-    footer img {
-        width: 100px;
-        margin: 10px auto;
-    }
+  
 
-    footer a {
-        font-size: 17px;
-    }
-
-    footer p {
-        font-size: 18px;
-    }
-   .text-box h1{
-       font-size: 20px;
-   }
    
-   #gj{
-       display: none;
-   }
+  
 }
 
 
@@ -435,28 +383,7 @@ footer p {
 
 
 @media(max-width: 450px) {
-    .header {
-        height: 250px;
-    }
-
-    .nav-links ul li {
-        padding: 8px 6px;
-    }
-
-    .text-box h1 {
-        font-size: 30px;
-        padding-bottom: 20px;
-    }
-
-    .text-box p {
-        font-size: 12px;
-        padding: 10px 0 20px;
-    }
-
-    .hero-btn {
-        padding: 10px 24px;
-        font-size: 12px;
-    }
+    
 
     .cl {
         width: 80%;
@@ -498,29 +425,154 @@ footer p {
         padding-left: 10px;
     }
 
-    footer img {
-        width: 100px;
-        margin: 10px auto;
-    }
-
-    footer a {
-        font-size: 17px;
-    }
-
-    footer p {
-        font-size: 18px;
-    }
-   .text-box h1{
-       font-size: 20px;
-   }
+    
    
-   #gj{
-       display: none;
-   }
-   .right{
-       padding-left: 100px;
-   }
+  
+   
 }
+
+
+/*----Header----*/
+
+
+
+
+
+.header{
+ height: 500px;
+ width: 100%;
+ background-image: linear-gradient(rgba(4,9,30,0.7),rgba(4,9,30,0.7)),url(https://i.postimg.cc/vBwWdFKr/Banner-yi.jpg);
+ background-position: center;
+ position : relative;
+font-family: "Voces", sans-serif; 
+}
+
+
+nav{
+  display: flex;
+  padding: 2% 6%;
+  justify-content: space-between;
+  align-item: center;
+}
+
+nav img{
+  max-width: 250px;
+height: auto;
+}
+
+.nav-links{
+  flex: 1;
+  text-align: right;
+}
+
+.nav-links ul li{
+  list-style: none;
+  display: inline-block;
+  padding: 8px 12px;
+  position: relative;
+}
+
+.nav-links ul li a{
+  color: #fff;
+  text-decoration: none;
+  font-size: 20px;
+	font-family: "Voces", sans-serif; 
+}
+
+.nav-links ul li::after{
+  content: "";
+  width: 0%;
+  height: 2px;
+  background: #00ff03;
+  display: block;
+  margin: auto;
+  transition: 0.5s;
+}
+
+
+.nav-links ul li:hover::after{
+  width: 100%;
+}
+
+
+
+.text-box{
+  width: 90%;
+  color: #fff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  text-align: center;
+}
+
+.text-box h1{
+  font-size: 40px;
+  font-family: "Raleway", sans-serif; 
+  padding-bottom: 40px;
+}
+
+.text-box p{
+  margin: 10px 0 40px;
+  font-size: 14px;
+  color: #fff;
+  font-family: 'Kanit', sans-serif;
+}
+
+
+.hero-btn{
+  display: inline-block;
+  text-decoration: none;
+  color: #fff;
+  border: 1px solid #fff;
+  padding: 12px 34px;
+  font-size: 13px;
+  background: transparent;
+  position: relative;
+  cursor: pointer;
+}
+
+.hero-btn:hover{
+  border: 1px solid #00ffff;
+  background: #00ffff;
+  color: black;
+  transition: 1s;
+}
+
+
+
+
+@media (max-width: 600px) {
+	nav img{
+  max-width: 200px;
+height: auto;
+	}
+
+.header{
+ height: 400px;
+}
+
+	
+	
+}
+
+
+
+
+
+
+@media (min-width: 601px) and (max-width: 1024px) {
+	.header{
+ height: 450px;
+}
+
+	
+}
+
+
+
+
+
 
 
 
@@ -575,14 +627,17 @@ footer p {
 			     
 
 <div class="team-info">
+    <h2 style="font-size: 10px;"> <i>Running...</i></h2>
   <h1>Team Information</h1><br>
+  
   <p><strong>Team ID :</strong> YI_WT_34_v</p>
   <p><strong>Team Type :</strong> Worker (Freelancer)</p>
   <p><strong>Team Serial Code :</strong> T-34</p>
-  <p><strong>Publish Date :</strong> 20/04/2024</p>
+  <p><strong>Publish Date :</strong> 01/07/2024</p>
   <p><strong>Leader Name :</strong> Tania Akter</p>
-  <p><strong>Referral YI Name :</strong> Rubel Khan</p>
+  <p><strong>Referral YI Name :</strong> Rakibul Islam</p>
   <a href="httos://yi-linkhub.github.io/Team-34" class="join-link">Joining Link : Click Here</a>
+  <a href="#" class="join-link">About : YI-Team</a>
 </div>
 
 
@@ -606,10 +661,27 @@ footer p {
         </div>
         <hr>
         
+        
+        <div class="question">
+            <h2>আপনার জানার জন্য -</h2>
+            <div class="answer">
+                <p>1. এই টাকাটি আমরা নিচ্ছি না<br>
+                2. এই টাকাটি আপনার একাউন্টে জমা থাকবে <br>
+                3. আপনি আপনার প্রথম Withdraw পাওয়ার পরপরই এই টাকাটি Withdraw নিতে পারবেন<br>
+                4. এই টাকা দেওয়ার মাধ্যমে আপনার উদার মন মানসিকতার একটি পরিক্ষা নেওয়া হবে এবং এর মাধ্যমে আপনার কাজের প্রতি আগ্রহ বাড়বে<br>
+                5. আপনাকে কোনো প্রকার এড ফি দিতে হবে না</p>
+            </div>
+        </div>
+        <hr>
+        
+        
+        
+        
+        
         <div class="question">
             <h2>একাউন্ট এক্টিভেশন ফি কেনো দেওয়া হয়? </h2>
             <div class="answer">
-                <p>একাউন্ট এক্টিভিশন ফি টি আপনার একাউন্টের সুরক্ষা হিসেবে কাজ করে, এর মাধ্যমে আমরা বুঝতে পারি আপনি আমাদের সাথে ভালোভাবে কাজ করতে আগ্রহী ।  আপনার একাউন্টটি হ্যাক হওয়া থেকে এই এক্টিভেশন ফি টি কাজ করে ।  কারণ একাউন্ট এক্টিভিশন ফি দেওয়া মানে আমাদের VIP লিস্টে চলে আসা ।  আর আমরা আমাদের VIP একাউন্টগুলোকে Passkey ছাড়া লগিং করতে দিই না ।  একাউন্ট এক্টিভিশন ফি যদি না দেওয়া হয় আপনার একাউন্টটি যিনি রেফার করেছে তিনি হ্যাক করতে পারেন ।  একাউন্ট এক্টিভিশন ফি ছারা আপনি আমাদের সাথে যুক্ত হতে পারবেন না এনং কাজ করার মাধ্যমে ইনকামও করতে পারবেন না । একাউন্ট এক্টিভিশন ফি ছাৱ আর কোনো টাকা Your Inspire IT - তে ইনভেস্ট করতে হয় না ।  </p>
+                <p>একাউন্ট এক্টিভিশন ফি টি আপনার একাউন্টের সুরক্ষা হিসেবে কাজ করে, এর মাধ্যমে আমরা বুঝতে পারি আপনি আমাদের সাথে ভালোভাবে কাজ করতে আগ্রহী ।  আপনার একাউন্টটি হ্যাক হওয়া থেকে এই এক্টিভেশন ফি টি কাজ করে ।  কারণ একাউন্ট এক্টিভিশন ফি দেওয়া মানে আমাদের VIP লিস্টে চলে আসা ।  আর আমরা আমাদের VIP একাউন্টগুলোকে Passkey ছাড়া লগিং করতে দিই না ।  একাউন্ট এক্টিভিশন ফি যদি না দেওয়া হয় আপনার একাউন্টটি যিনি রেফার করেছে তিনি হ্যাক করতে পারেন ।  একাউন্ট এক্টিভিশন ফি ছারা আপনি আমাদের সাথে যুক্ত হতে পারবেন না এনং কাজ করার মাধ্যমে ইনকামও করতে পারবেন না । একাউন্ট এক্টিভিশন ফি ছাড়া আর কোনো টাকা Your Inspire IT - তে ইনভেস্ট করতে হয় না ।  </p>
             </div>
         </div>
         <hr>
@@ -630,35 +702,20 @@ footer p {
                 2. অবশ্যই আপনার একাউন্টটি রেফারাল টিমের কেউ খুলে দিবে <br>
                 3. আপনার একাউন্টটি টিম ম্যানেজমেন্ট টিমের কাছ থেকে এপ্রুবেড ( এপ্রুবেড না থাকলে যিনি তপনাকে রেফার করেছেন তার সাথে যোগাযোগ করুন )<br>
                 4. আপনার কাজ করার মন মানোসিকতা থাকতে হবে<br>
-                5. আপনি যে কাজটি করবেন সেই কাজের এক্টিভেশনের পরিমাণ মতো ফি হওয়া</p>
+                5. রেফারাল টিম + টিম ম্যানেজমেন্ট টিমের সাথে ভালো ব্যবহার করতে হবে</p>
             </div>
         </div>
         <hr>
         
         
-         <div class="question">
-            <h2>আপনার জানার জন্য -</h2>
-            <div class="answer">
-                <p>1. এই টাকাটি আমরা নিচ্ছি না<br>
-                2. এই টাকাটি আপনার একাউন্টে জমা থাকবে <br>
-                3. আপনি আপনার প্রথম Withdraw পাওয়ার পরপরই এই টাকাটি Withdraw নিতে পারবেন<br>
-                4. এই টাকা দেওয়ার মাধ্যমে আপনার উদার মন মানসিকতার একটি পরিক্ষা নেওয়া হবে এবং এর মাধ্যমে আপনার কাজের প্রতি আগ্রহ বাড়বে<br>
-                5. আপনাকে কোনো প্রকার এড ফি দিতে হবে না</p>
-            </div>
-        </div>
-        <hr>
+         
         
         
         
         <div class="question">
-            <h2>কোন কাজের জন্য কত টাকা এক্টিভেশন ফি  -</h2>
+            <h2>এক্টিভিশন ফি কতো ?   -</h2>
             <div class="answer">
-                <p>ফেসবুক মার্কেটিং  &nbsp : <b>30/-</b><br>
-                টাইপিং টাস্ক &nbsp : <b>40/-</b><br>
-ওয়েবসাইট রিসেলিং &nbsp : <b>100/-</b><br>
-ড্রাইব প্যাক / এমবি + মিনিট প্যাক সেল &nbsp : <b>45/-</b><br>
-ওয়েবসাইটে একাউন্ট করে ইনকাম &nbsp : <b>60/-</b><br>
-ওয়েবসাইট ভিজিটিং &nbsp : <b>50/-</b></p>
+          <p>প্রত্যেক একাউন্টের জন্য এক্টিভিশন ফি <b>40/-</b> টাকা </p>
             </div>
         </div>
         <hr>
@@ -711,27 +768,10 @@ footer p {
     </section>
     
     
-    
-    <section="fr">
-    
-    
-    <footer>
-        <div class="left">
-            <a href="https://yrinspireit.github.io">
-                <img src="https://i.postimg.cc/nVvDBPP5/Yi-logo.png">
-            </a>
-        </div>
-        <div class="right">
-            <ul>
-                <li><a href="https://yrinspireit.github.io">YI Main</a></li>
-                <li><a href="https://pay-yourinspireit.github.io/withdraw">Withdraw</a></li>
-                <li><a href="https://pay-yourinspireit.github.io/faq">FAQ</a></li>
-                <li><a href="https://pay-yourinspireit.github.io/active-account">Account Active</a></li>
-                <li><a href="https://pay-yourinspireit.github.io/running-team">Running Team</a></li>
-                <li><a href="https://yi-linkhub.io/Team-34">Join Team</a></li>
-            </ul>
-        </div><br><br>
-        <p>© All Rights Reserved to Your Inspire IT 2022-2024</p>
-    </footer></section>
+  
+  
+  
+  
+  <div id="footer"></div>
 </body>
 </html>

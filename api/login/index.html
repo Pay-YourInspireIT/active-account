@@ -246,7 +246,7 @@
             const messageElement = document.getElementById("message");
 
             if (users[username] && users[username] === password) {
-                window.location.href = 'https://pay-yourinspireit.github.io/withdraw/api/pay'; // Redirect on success
+                window.location.href = 'https://pay-yourinspireit.github.io/active-account/api/pay'; // Redirect on success
             } else {
                 messageElement.innerText = "Incorrect Username or Password!";
                 messageElement.style.display = "block";

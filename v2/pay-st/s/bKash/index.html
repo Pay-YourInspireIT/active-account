@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify Payment - Your Inspire IT</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- Global Styles & Variables (DARK THEME - ENHANCED) --- */
+        :root {
+            --primary-bg: #1a1a2e;
+            --secondary-bg: #16213e;
+            --tertiary-bg: #2a3342;
+            --text-primary: #e3e3e3;
+            --text-secondary: #a0aec0;
+            --accent1: #00f5c3; /* Main accent */
+            --accent1-hover: #00d1a7;
+            --accent2: #ff9a00; /* Secondary accent */
+            --border-color: #3a476a;
+            --shadow-color: rgba(0, 245, 195, 0.1);
+            --hover-shadow-color: rgba(0, 245, 195, 0.2);
+            --success-color: #10e68c;
+            --warning-color: #ffb84d;
+            --error-color: #ff6b6b;
+            --info-bg: rgba(59, 130, 246, 0.1);
+            --info-border: rgba(59, 130, 246, 0.4);
+            --info-text: #60a5fa;
+            --error-bg: rgba(255, 107, 107, 0.1);
+            --error-border: rgba(255, 107, 107, 0.4);
+            --blocked-bg: rgba(255, 184, 77, 0.1);
+            --blocked-border: rgba(255, 184, 77, 0.4);
+            --blocked-text: var(--warning-color);
+            --input-icon-color: #6a7a93; /* Color for input icons */
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            /* Subtle grid background */
+            background-color: var(--primary-bg);
+            background-image:
+                linear-gradient(rgba(22, 33, 62, 0.8) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(22, 33, 62, 0.8) 1px, transparent 1px);
+            background-size: 40px 40px;
+            color: var(--text-primary);
+            line-height: 1.6;
+            font-size: 16px;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        main { flex: 1; }
+
+        .container { max-width: 1140px; margin: 0 auto; padding: 0 20px; }
+        h1, h2, h3 { font-weight: 600; color: var(--text-primary); margin-bottom: 0.7em; }
+        h2 { font-size: 2rem; text-align: center; }
+        h3 { font-size: 1.15rem; }
+        p { margin-bottom: 1em; color: var(--text-secondary); font-size: 0.95rem; }
+        a { text-decoration: none; color: var(--accent1); transition: color 0.3s ease; }
+        a:hover { color: var(--accent1-hover); }
+        section { padding: 70px 0; }
+
+        /* --- Header/Navigation (DARK THEME STYLING - Copied) --- */
+        .main-header { background-color: var(--secondary-bg); padding: 15px 0; box-shadow: 0 3px 12px rgba(0, 0, 0, 0.2); position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid var(--border-color); }
+        .main-header .container { display: flex; justify-content: space-between; align-items: center; position: relative; }
+        .logo { font-size: 1.5rem; font-weight: 700; color: var(--accent1); }
+        .main-nav { display: flex; }
+        .main-nav a { margin-left: 30px; font-weight: 500; color: var(--text-primary); position: relative; padding-bottom: 5px; transition: color 0.3s ease; }
+        .main-nav a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background-color: var(--accent1); transition: width 0.3s ease; }
+        .main-nav a:hover::after { width: 100%; }
+        .main-nav a:hover, .main-nav a.active-nav { color: var(--accent1); }
+        .menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; background: none; border: none; color: var(--text-primary); }
+
+        /* --- Payment Verify Section Styles (ENHANCED) --- */
+        #payment-verify-section .container {
+            max-width: 650px; /* Slightly narrower */
+            background-color: rgba(22, 33, 62, 0.9); /* Semi-transparent container */
+            backdrop-filter: blur(5px); /* Frosted glass effect */
+            padding: 45px 40px; /* Increased padding */
+            border-radius: 15px; /* More rounded */
+            box-shadow: 0 10px 30px rgba(0,0,0, 0.4);
+            border: 1px solid var(--border-color);
+            animation: fadeInSlideUp 0.7s ease-out forwards;
+        }
+         @keyframes fadeInSlideUp {
+             from { opacity: 0; transform: translateY(20px); }
+             to { opacity: 1; transform: translateY(0); }
+         }
+
+
+         #payment-verify-section h2 { margin-bottom: 20px; display: flex; align-items: center; justify-content: center; gap: 15px; }
+         .payment-heading-logo { height: 40px; width: auto; filter: drop-shadow(0 0 5px var(--shadow-color)); }
+
+        .announcement {
+            background-color: var(--info-bg);
+            border: 1px solid var(--info-border);
+            color: var(--info-text);
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 35px; /* More space */
+            display: flex;
+            align-items: flex-start; /* Align icon top */
+            gap: 12px;
+            font-size: 0.9rem;
+            text-align: left;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
+        }
+        .announcement i { font-size: 1.1rem; margin-top: 2px; color: var(--info-text); }
+
+        .recipient-info {
+            background-color: var(--tertiary-bg);
+            padding: 18px 25px; /* Increased padding */
+            border-radius: 10px;
+            margin-bottom: 35px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 3px 8px rgba(0,0,0, 0.15);
+        }
+        .recipient-info p { margin: 0; font-size: 1rem; color: var(--text-primary); font-weight: 500; }
+        .recipient-info strong { color: var(--text-secondary); font-weight: 400; margin-right: 8px; }
+        #recipient-number { font-family: monospace; letter-spacing: 1.5px; color: var(--accent1); font-size: 1.1rem; } /* Larger number */
+        .copy-btn { background: none; border: 1px solid var(--accent1); color: var(--accent1); padding: 7px 14px; border-radius: 6px; cursor: pointer; font-size: 0.9rem; transition: all 0.3s ease; display: flex; align-items: center; gap: 6px; }
+        .copy-btn:hover { background-color: var(--accent1); color: var(--primary-bg); box-shadow: 0 0 10px var(--shadow-color); }
+        .copy-btn .fa-check { display: none; }
+        .copy-btn.copied .fa-copy { display: none; }
+        .copy-btn.copied .fa-check { display: inline-block; }
+        .copy-btn.copied { background-color: var(--success-color); border-color: var(--success-color); color: var(--primary-bg); }
+
+
+        /* Verification Form Styles (ENHANCED) */
+        .verify-form .form-group {
+            margin-bottom: 22px;
+            position: relative; /* For icon positioning */
+        }
+        .verify-form label { display: block; font-weight: 500; margin-bottom: 8px; color: var(--text-secondary); font-size: 0.9rem; }
+        .verify-form .input-icon { /* Icon wrapper */
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(calc(-50% + 4px)); /* Center icon vertically (adjust for label) */
+            color: var(--input-icon-color);
+            font-size: 1rem;
+            pointer-events: none; /* Don't block input clicks */
+            transition: color 0.3s ease;
+        }
+        .verify-form input[type="text"],
+        .verify-form input[type="number"],
+        .verify-form input[type="tel"] {
+            width: 100%;
+            padding: 12px 15px 12px 45px; /* Added left padding for icon */
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 1rem;
+            color: var(--text-primary);
+            background-color: var(--tertiary-bg);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .verify-form input:focus {
+            outline: none;
+            border-color: var(--accent1);
+            box-shadow: 0 0 0 3px rgba(0, 245, 195, 0.2);
+        }
+         .verify-form input:focus + .input-icon { /* Change icon color on focus */
+             color: var(--accent1);
+         }
+         /* Input spinners */
+        .verify-form input[type=number]::-webkit-inner-spin-button,
+        .verify-form input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+        .verify-form input[type=number] { -moz-appearance: textfield; }
+
+        /* Submit Button (ENHANCED) */
+        .btn-submit-verify {
+            display: flex; /* Use flex for centering spinner/text */
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            padding: 12px 20px;
+            background: linear-gradient(90deg, var(--accent1) 0%, var(--accent1-hover) 100%);
+            color: #11141d;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 15px;
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden; /* For potential animations */
+        }
+        .btn-submit-verify:hover:not(:disabled) {
+            opacity: 0.9;
+            box-shadow: 0 5px 20px var(--shadow-color);
+            transform: translateY(-3px);
+        }
+        .btn-submit-verify:disabled { opacity: 0.6; cursor: not-allowed; background: var(--tertiary-bg); color: var(--text-secondary); box-shadow: none; transform: none; }
+        .btn-submit-verify .spinner { display: inline-block; width: 1.2em; height: 1.2em; border: 3px solid currentColor; border-right-color: transparent; border-radius: 50%; animation: spin 0.6s linear infinite; vertical-align: middle; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+
+         /* Feedback Message Area (ENHANCED) */
+         #feedback-message {
+             padding: 15px 20px;
+             border-radius: 8px;
+             margin-top: 30px;
+             font-size: 0.95rem;
+             text-align: left; /* Align text left */
+             border: 1px solid transparent;
+             display: none; /* Hidden initially */
+             animation: fadeInScaleUp 0.5s ease-out forwards;
+             display: flex; /* Use flex for icon */
+             align-items: center;
+             gap: 10px;
+         }
+         #feedback-message i { /* Icon style */
+             font-size: 1.2rem;
+             flex-shrink: 0; /* Prevent icon from shrinking */
+         }
+         @keyframes fadeInScaleUp {
+             from { opacity: 0; transform: scale(0.98) translateY(5px); }
+             to { opacity: 1; transform: scale(1) translateY(0); }
+         }
+
+         #feedback-message.error { background-color: var(--error-bg); border-color: var(--error-border); color: var(--error-color); }
+         #feedback-message.error i { color: var(--error-color); }
+         #feedback-message.blocked { background-color: var(--blocked-bg); border-color: var(--blocked-border); color: var(--blocked-text); font-weight: 500; }
+         #feedback-message.blocked i { color: var(--blocked-text); }
+
+
+        /* --- Footer (DARK THEME STYLING - Copied) --- */
+        .main-footer { background-color: #0f121f; color: var(--text-secondary); padding: 50px 0 20px 0; margin-top: auto; border-top: 1px solid var(--border-color); }
+        .footer-content { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 30px; margin-bottom: 40px; }
+        .footer-col { flex: 1; min-width: 200px; margin-bottom: 20px; }
+        .footer-col h4 { color: var(--text-primary); margin-bottom: 20px; font-size: 1.1rem; font-weight: 600; position: relative; padding-bottom: 10px; }
+        .footer-col h4::after { content: ''; position: absolute; left: 0; bottom: 0; width: 40px; height: 2px; background-color: var(--accent1); }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 12px; }
+        .footer-col ul li a { color: var(--text-secondary); transition: color 0.3s ease, padding-left 0.3s ease; }
+        .footer-col ul li a:hover { color: var(--accent1); padding-left: 5px; }
+        .footer-bottom { border-top: 1px solid var(--border-color); padding-top: 25px; text-align: center; font-size: 0.9rem; color: #6a7a93; }
+
+
+        /* --- Responsive Design --- */
+        /* Keep previous responsive rules, adjust if needed */
+        @media (max-width: 992px) {
+            /* Nav toggle */
+            .menu-toggle { display: block; position: absolute; right: 20px; top: 50%; transform: translateY(-50%); }
+            .main-nav { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; width: 100%; background-color: var(--secondary-bg); padding: 15px 0; box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); text-align: center; animation: slideDown 0.3s ease-out; border-top: 1px solid var(--border-color);}
+            .main-nav.active { display: flex; }
+            .main-nav a { margin: 10px 20px; padding: 10px 0; width: auto; border-radius: 5px;}
+            .main-nav a:hover { background-color: var(--tertiary-bg); color: var(--accent1); }
+            @keyframes slideDown { from { opacity: 0; transform: translateY(-10%); } to { opacity: 1; transform: translateY(0); } }
+             section { padding: 60px 0; }
+             h2 { font-size: 1.8rem; }
+             #payment-verify-section .container { padding: 30px; max-width: 90%; }
+        }
+        @media (max-width: 768px) {
+            .footer-content { text-align: center; }
+            .footer-col { flex-basis: 100%; margin-bottom: 30px; align-items: center; }
+            .footer-col h4::after { left: 50%; transform: translateX(-50%); }
+        }
+        @media (max-width: 576px) {
+             .logo { font-size: 1.3rem; }
+             section { padding: 50px 0; }
+             h2 { font-size: 1.6rem; gap: 10px;}
+             .payment-heading-logo { height: 30px;}
+             #payment-verify-section .container { padding: 25px 15px; }
+             .recipient-info { flex-direction: column; align-items: flex-start; gap: 10px; }
+             .copy-btn { align-self: flex-end; }
+             .verify-form input { font-size: 0.95rem; padding: 10px 12px 10px 40px;} /* Adjust padding */
+             .verify-form .input-icon { left: 12px; font-size: 0.9rem;}
+             .btn-submit-verify { font-size: 1rem; padding: 10px 15px;}
+             #feedback-message { font-size: 0.9rem; }
+        }
+        
+       .input-icon{
+           margin-top: 10px;
+       }
+    </style>
+</head>
+<body>
+
+    <!-- Header (DARK THEME) -->
+    <header class="main-header">
+        <div class="container">
+            <a href="index.html" class="logo">Your Inspire IT</a>
+            <button class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav class="main-nav" id="main-nav">
+                 <a href="index.html">Home</a>
+                 <a href="dashboard.html">Dashboard</a>
+                 <a href="payment-verify.html" class="active-nav">Verify Payment</a>
+                 <a href="#">Profile</a>
+                 <a href="#">Logout</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Payment Verification Section -->
+        <section id="payment-verify-section">
+            <div class="container">
+
+                <!-- Announcement -->
+                <div class="announcement">
+                    <i class="fas fa-info-circle"></i>
+                    <span>Please send the <strong>exact amount</strong> to the bKash number below. After sending, use the <strong>Transaction ID (TrxID)</strong> from the confirmation SMS to verify your payment here.</span>
+                </div>
+
+                <!-- Heading & Logo -->
+                <h2>
+                    <img src="https://i.postimg.cc/xdVnfxt1/b-Kash-Logo.png" alt="bKash Logo" class="payment-heading-logo">
+                    Verify bKash Payment
+                </h2>
+
+                <!-- Recipient Info -->
+                <div class="recipient-info">
+                    <p><strong>Send Payment To:</strong> <span id="recipient-number">01912107604</span></p> <!-- REPLACE -->
+                    <button id="copy-btn" class="copy-btn">
+                        <i class="fas fa-copy"></i>
+                        <i class="fas fa-check"></i>
+                        <span>Copy</span>
+                    </button>
+                </div>
+
+                <!-- Verification Form -->
+                <form id="verify-form" class="verify-form" novalidate>
+                    <div class="form-group">
+                        <label for="sender-number">Your bKash Number (Sender)</label>
+                        <span class="input-icon"><i class="fas fa-mobile-alt"></i></span>
+                        <input type="tel" id="sender-number" name="sender_number" placeholder="e.g., 01xxxxxxxxx" required pattern="^(?:\+?88)?01[3-9]\d{8}$">
+                    </div>
+                    <div class="form-group">
+                        <label for="amount">Amount Sent (BDT)</label>
+                         <span class="input-icon"><i class="fas fa-dollar-sign"></i></span>
+                        <input type="number" id="amount" name="amount" placeholder="e.g., 500" required min="1">
+                    </div>
+                    <div class="form-group">
+                         <label for="trx-id">Transaction ID (TrxID)</label>
+                         <span class="input-icon"><i class="fas fa-receipt"></i></span>
+                         <input type="text" id="trx-id" name="trx_id" placeholder="e.g., 9X3Y8Z7A2B" required minlength="8" maxlength="12" pattern="[a-zA-Z0-9]+"> <!-- Example validation -->
+                     </div>
+
+                     <button type="submit" id="verify-submit-btn" class="btn-submit-verify">
+                         <span class="btn-text">Verify Payment</span>
+                         <span class="spinner" style="display: none;"></span>
+                     </button>
+                </form>
+
+                 <!-- Feedback Message Area -->
+                 <div id="feedback-message">
+                     <!-- Message appears here -->
+                 </div>
+
+            </div> <!-- End of container -->
+        </section>
+    </main>
+
+    <!-- Footer (DARK THEME) -->
+    <footer class="main-footer">
+        <div class="container">
+             <div class="footer-content">
+                  <!-- Footer columns -->
+                  <div class="footer-col"><h4>About Us</h4><ul><li><a href="#">Our Mission</a></li><li><a href="#">How it Works</a></li><li><a href="#">Blog</a></li></ul></div>
+                  <div class="footer-col"><h4>Support</h4><ul><li><a href="#">Help Center / FAQ</a></li><li><a href="#">Contact Us</a></li><li><a href="#">Report</a></li><li><a href="#">Payment Info</a></li></ul></div>
+                  <div class="footer-col"><h4>Legal</h4><ul><li><a href="#">Terms of Service</a></li><li><a href="#">Privacy Policy</a></li><li><a href="#">Earning Disclaimer</a></li></ul></div>
+             </div>
+             <div class="footer-bottom">© 2024 Your Inspire IT. All Rights Reserved.</div>
+        </div>
+    </footer>
+
+    <script>
+         // --- Mobile Menu Toggle (Same as before) ---
+         const menuToggle = document.getElementById('menu-toggle');
+         const mainNav = document.getElementById('main-nav');
+         if (menuToggle && mainNav) { /* ... same code ... */
+            menuToggle.addEventListener('click', () => {
+                 mainNav.classList.toggle('active');
+                 const icon = menuToggle.querySelector('i');
+                 icon.classList.toggle('fa-bars');
+                 icon.classList.toggle('fa-times');
+             });
+          }
+
+         // --- Cookie Helper Functions (Same as before) ---
+         function setCookie(name, value, days) { /* ... same code ... */
+            let expires = "";
+             if (days) {
+                 const date = new Date();
+                 date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                 expires = "; expires=" + date.toUTCString();
+             }
+             // Ensure SameSite=Lax for modern browsers
+             document.cookie = name + "=" + (encodeURIComponent(value) || "") + expires + "; path=/; SameSite=Lax";
+         }
+         function getCookie(name) { /* ... same code ... */
+             const nameEQ = name + "=";
+             const ca = document.cookie.split(';');
+             for(let i = 0; i < ca.length; i++) {
+                 let c = ca[i];
+                 while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+                 if (c.indexOf(nameEQ) == 0) return decodeURIComponent(c.substring(nameEQ.length, c.length));
+             }
+             return null;
+         }
+
+        // --- Copy Button Logic (Enhanced Feedback) ---
+        const copyBtn = document.getElementById('copy-btn');
+        const recipientNumberEl = document.getElementById('recipient-number');
+        if (copyBtn && recipientNumberEl) { /* ... same code ... */
+            copyBtn.addEventListener('click', () => {
+                const numberToCopy = recipientNumberEl.textContent;
+                navigator.clipboard.writeText(numberToCopy).then(() => {
+                    copyBtn.classList.add('copied');
+                    copyBtn.querySelector('span').textContent = 'Copied!';
+                    copyBtn.disabled = true; // Disable briefly
+                    setTimeout(() => {
+                        copyBtn.classList.remove('copied');
+                        copyBtn.querySelector('span').textContent = 'Copy';
+                        copyBtn.disabled = false;
+                    }, 2000);
+                }).catch(err => {
+                    console.error('Failed to copy: ', err);
+                    alert('Failed to copy number.');
+                });
+            });
+         }
+
+         // --- Verification Form Logic (Combination-Specific Attempts) ---
+         const verifyForm = document.getElementById('verify-form');
+         const submitBtn = document.getElementById('verify-submit-btn');
+         const feedbackDiv = document.getElementById('feedback-message');
+         const senderInput = document.getElementById('sender-number');
+         const amountInput = document.getElementById('amount');
+         const trxInput = document.getElementById('trx-id');
+         const btnText = submitBtn.querySelector('.btn-text');
+         const spinner = submitBtn.querySelector('.spinner');
+
+         const MAX_ATTEMPTS = 5;
+         const COOKIE_PREFIX = 'verifyAttempt_'; // Prefix for cookies
+
+         // Possible error messages
+         const errorMessages = [
+            "Invalid Transaction ID format or length.",
+            "Payment amount seems incorrect for this transaction.",
+            "Sender number mismatch or not found.",
+            "Verification timeout. Please retry.",
+            "This Transaction ID might have been used already.",
+            "System busy. Unable to verify now. Contact support.",
+            "Payment details mismatch. Check sender, amount, and TrxID."
+         ];
+
+         // Function to generate a unique key for the attempt combination
+         function generateAttemptKey(sender, amount, trxId) {
+             const combined = `${sender.trim()}_${amount.trim()}_${trxId.trim().toUpperCase()}`;
+             // Use Base64 for a safe cookie name (handles special characters)
+             try {
+                 return btoa(combined).replace(/=/g, ''); // btoa might add padding '=' which can be removed
+             } catch (e) {
+                 // Fallback for environments where btoa might fail (less likely in modern browsers)
+                 console.error("Base64 encoding failed:", e);
+                 // Basic sanitization (replace non-alphanumeric)
+                 return combined.replace(/[^a-zA-Z0-9_]/g, '');
+             }
+         }
+
+         // Function to display feedback (with icons)
+         function displayFeedback(message, type = 'error') {
+             let iconClass = 'fa-times-circle'; // Default error icon
+             if (type === 'blocked') {
+                 iconClass = 'fa-ban'; // Blocked icon
+             }
+             // Add more types like 'success' with 'fa-check-circle' if needed
+
+             feedbackDiv.innerHTML = `<i class="fas ${iconClass}"></i> <span>${message}</span>`;
+             feedbackDiv.className = ''; // Reset classes
+             feedbackDiv.classList.add(type);
+             feedbackDiv.style.display = 'flex'; // Use flex to show icon + text
+         }
+
+         // Function to check and potentially block the form for a specific key
+         function checkAndBlockIfNeeded(attemptKey) {
+            const cookieName = COOKIE_PREFIX + attemptKey;
+            const currentAttempts = parseInt(getCookie(cookieName) || '0');
+
+            if (currentAttempts >= MAX_ATTEMPTS) {
+                displayFeedback(`Maximum verification attempts (${MAX_ATTEMPTS}) reached for these details. Please double-check info or contact support.`, 'blocked');
+                submitBtn.disabled = true;
+                btnText.textContent = 'Blocked for these Details';
+                spinner.style.display = 'none';
+                return true; // Is blocked
+            }
+            return false; // Not blocked
+         }
+
+
+         if (verifyForm && submitBtn && feedbackDiv) {
+             verifyForm.addEventListener('submit', (event) => {
+                 event.preventDefault();
+                 feedbackDiv.style.display = 'none';
+
+                 // 1. Basic Client-Side Validation (Improved Messages)
+                 const senderNumber = senderInput.value.trim();
+                 const amount = amountInput.value.trim();
+                 const trxId = trxInput.value.trim().toUpperCase(); // Standardize TrxID case
+
+                 let isValid = true;
+                 let validationError = '';
+
+                 if (!senderNumber || !amount || !trxId) {
+                     isValid = false; validationError = 'Please fill in all fields.';
+                 } else if (!/^(?:\+?88)?01[3-9]\d{8}$/.test(senderNumber)) {
+                      isValid = false; validationError = 'Enter a valid Bangladeshi mobile number (e.g., 01xxxxxxxxx).';
+                 } else if (isNaN(amount) || parseFloat(amount) <= 0) {
+                     isValid = false; validationError = 'Enter a valid positive amount.';
+                 } else if (trxId.length < 8 || trxId.length > 12 || !/^[a-zA-Z0-9]+$/.test(trxId)) {
+                      // Example TrxID validation (adjust as needed)
+                     isValid = false; validationError = 'Enter a valid Transaction ID (8-12 alphanumeric characters).';
+                 }
+
+                 if (!isValid) {
+                     displayFeedback(validationError, 'error');
+                     return;
+                 }
+
+                 // 2. Generate Key and Check Attempt Limit for *this combination*
+                 const attemptKey = generateAttemptKey(senderNumber, amount, trxId);
+                 if (checkAndBlockIfNeeded(attemptKey)) {
+                     return; // Stop if already blocked for this combination
+                 }
+
+                 // 3. Simulate Verification (Always Fails) & Update Attempts
+                 submitBtn.disabled = true;
+                 btnText.textContent = 'Verifying...';
+                 spinner.style.display = 'inline-block';
+
+                 setTimeout(() => {
+                     // --- THIS IS WHERE REAL VERIFICATION WOULD HAPPEN ---
+                     // On failure:
+                     const specificCookieName = COOKIE_PREFIX + attemptKey;
+                     let attempts = parseInt(getCookie(specificCookieName) || '0');
+                     attempts++;
+                     setCookie(specificCookieName, attempts.toString(), 1); // Store attempt for *this key* for 1 day
+
+                     const randomError = errorMessages[Math.floor(Math.random() * errorMessages.length)];
+                     displayFeedback(randomError, 'error');
+
+                     // Re-enable button
+                     submitBtn.disabled = false;
+                     btnText.textContent = 'Verify Payment';
+                     spinner.style.display = 'none';
+
+                     // Check if max attempts are now reached AFTER this attempt for *this key*
+                     checkAndBlockIfNeeded(attemptKey); // Re-check to update UI if blocked now
+
+                     // --- On Success (If verification worked): ---
+                     // You would typically redirect or show a success message
+                     // and potentially clear the attempt cookie: setCookie(specificCookieName, '', -1);
+
+                 }, 1800); // Simulate longer processing time
+             });
+         }
+
+    </script>
+
+</body>
+      </html>

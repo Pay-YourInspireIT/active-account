@@ -345,7 +345,7 @@
                     <i class="fas fa-envelope-open-text"></i>
                 </div>
                 <h1>Activate Your Your Inspire IT Account</h1>
-                 <p>Hello <strong id="loggedInUserName">User</strong> !<np> 
+                 <p>Hello <strong id="loggedInUserIdDisplay">User</strong> !<np> 
                 <p class="subtitle">অনলাইন ইনকামের পথে আপনাকে স্বাগতম! শুধু মাত্র আর একটি ধাপ। একাউন্ট এক্টিভ করতে নিচের বাটনে ক্লিক করুন!</p>
                 <div class="activation-steps">
                     <!-- Note: These buttons are guides for the user; actual functionality needs backend -->
@@ -541,42 +541,75 @@
         });
         
         
-        
-         function getCookie(name) {
-            const nameEQ = name + "=";
-            const ca = document.cookie.split(';');
-            for(let i = 0; i < ca.length; i++) {
-                let c = ca[i];
-                while (c.charAt(0) == ' ') c = c.substring(1, c.length);
-                if (c.indexOf(nameEQ) == 0) return decodeURIComponent(c.substring(nameEQ.length, c.length)); // Decode URI Component
-            }
-            return null;
-        }
-        
-        
-        
-        
-          window.onload = function() {
-            const loginCookieName = 'loggedInUser'; // লগইন কুকির নাম
-            const loggedInUser = getCookie(loginCookieName);
+// --- প্রয়োজনীয়: কুকি পড়ার ফাংশন ---
+function getCookie(name) {
+    const nameEQ = name + "=";
+    const ca = document.cookie.split(';');
+    for(let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+    }
+    return null;
+}
 
-            if (!loggedInUser) {
-                // যদি কুকি না থাকে, ব্যবহারকারীকে লগইন পেজে পাঠান
-                console.log("No active session found on verification page. Redirecting to login.");
-                // window.location.href = 'auth.html'; // আপনার লগইন পেজের URL
-                 window.location.href = 'https://YrInspireIT.github.io/'; // ফলব্যাক লগইন পেজ
-            } else {
-                // যদি কুকি থাকে, ইউজারের নাম দেখান
-                // Sanitize the username display slightly (optional but good practice)
-                const userNameElement = document.getElementById('loggedInUserName');
-                userNameElement.textContent = loggedInUser.replace(/</g, "<").replace(/>/g, ">"); // Basic XSS prevention
-                console.log(`Session verification page loaded for user: ${loggedInUser}`);
-            }
-        };
-        
-       
+// --- মূল লজিক: কুকি চেক ও অ্যাকশন ---
+(function() {
+    const cookieNameToCheck = 'walletSessionUser'; // যে কুকির নাম চেক করতে চান
+    const loginPageUrl = 'https://yrinspireit.github.io/login'; // কুকি না থাকলে এই পেজে রিডাইরেক্ট হবে (আপনার লগইন পেজের URL দিন)
+
+    // HTML এলিমেন্ট সিলেক্ট করুন (আইডিগুলো আপনার HTML অনুযায়ী হতে হবে)
+    const loggedInContentDiv = document.getElementById('loggedInContent');
+    const notLoggedInMessageDiv = document.getElementById('notLoggedInMessage');
+    const userIdDisplaySpan = document.getElementById('loggedInUserIdDisplay');
+
+    const userSession = getCookie(cookieNameToCheck);
+
+    if (userSession && userSession !== '') {
+        // --- কুকি পাওয়া গেছে ---
+        console.log(`Cookie '${cookieNameToCheck}' found with value '${userSession}'. Showing user content.`);
+
+        // ইউজার আইডি দেখান (যদি এলিমেন্ট থাকে)
+        if (userIdDisplaySpan) {
+            userIdDisplaySpan.textContent = userSession;
+        } else {
+            console.warn("Element with ID 'loggedInUserIdDisplay' not found. Cannot display user ID.");
+        }
+
+        // লগইন করা কন্টেন্ট দেখান এবং লগইন মেসেজ লুকান (যদি এলিমেন্ট থাকে)
+        if (loggedInContentDiv) {
+            loggedInContentDiv.style.display = 'block'; // অথবা আপনার ডিফল্ট ডিসপ্লে স্টাইল (e.g., 'flex', 'grid')
+        }
+         if (notLoggedInMessageDiv) {
+            notLoggedInMessageDiv.style.display = 'none';
+        }
+
+        // *** এখানে কোনো রিডাইরেক্ট হবে না ***
+
+    } else {
+        // --- কুকি পাওয়া যায়নি অথবা খালি ---
+        console.log(`Cookie '${cookieNameToCheck}' not found or is empty. Redirecting to login page: ${loginPageUrl}`);
+
+        // লগইন পেজে রিডাইরেক্ট করুন
+        window.location.href = loginPageUrl;
+    }
+})(); // ফাংশনটি অবিলম্বে কল করা হচ্ছে (IIFE)
+
+// --- ঐচ্ছিক: লগআউট ফাংশন (যদি প্রয়োজন হয়) ---
+function deleteCookie(name) {
+    document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT; SameSite=Lax; Secure';
+    console.log("Cookie deleted:", name);
+}
+
+function logout() {
+    const cookieNameToDelete = 'walletSessionUser';
+    deleteCookie(cookieNameToDelete);
+    // লগআউটের পর লগইন পেজে পাঠান
+    window.location.href = 'https://pay-yourinspireit.github.io/active-account'; // আপনার লগইন পেজের URL
+}
+      
 
     </script>
 
 </body>
-  </html>
+    </html>

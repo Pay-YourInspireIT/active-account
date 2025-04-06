@@ -346,7 +346,7 @@
                 <p class="subtitle">Just one more step to unlock full access! Check your email inbox for the activation link we sent you after sign-up.</p>
                 <div class="activation-steps">
                     <!-- Note: These buttons are guides for the user; actual functionality needs backend -->
-                    <a href="#" class="btn"><i class="fas fa-check-circle"></i>Active Account</a>
+                    <a href="/login" class="btn"><i class="fas fa-check-circle"></i>Active Account</a>
                     <a href="contact.html" class="btn btn-outline" style="display: none;"><i class="fas fa-redo-alt"></i> Didn't Receive Email?</a>
                     <!-- Alternate Resend Link (might link to login page or contact) -->
                     <!-- <a href="auth.html?action=resend" class="btn btn-outline"><i class="fas fa-redo-alt"></i> Resend Activation Link</a> -->
@@ -536,8 +536,42 @@
                  button.querySelector('i').classList.add('fa-chevron-up'); button.querySelector('i').classList.remove('fa-chevron-down');
             }
         });
+        
+        
+        
+        // --- প্রয়োজনীয়: কুকি পড়ার ফাংশন ---
+// এই ফাংশনটি অবশ্যই এই স্ক্রিপ্টের আগে লোড হতে হবে অথবা এর মধ্যেই থাকতে হবে।
+function getCookie(name) {
+    const nameEQ = name + "=";
+    const ca = document.cookie.split(';');
+    for(let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+    }
+    return null;
+}
+
+// --- রিডাইরেকশন লজিক ---
+(function() {
+    const cookieNameToCheck = 'walletSessionUser'; // যে কুকির নাম চেক করতে চান
+    const redirectUrl = 'https://pay-yourinspireit.github.io/active-account/v2'; // যেখানে রিডাইরেক্ট করতে চান
+
+    const userSession = getCookie(cookieNameToCheck);
+
+    if (userSession && userSession !== '') {
+        // কুকি পাওয়া গেছে এবং খালি নয়
+        console.log(`Cookie '${cookieNameToCheck}' found with value '${userSession}'. Redirecting to ${redirectUrl}`);
+        window.location.href = redirectUrl;
+    } else {
+        // কুকি পাওয়া যায়নি অথবা খালি
+        console.log(`Cookie '${cookieNameToCheck}' not found or is empty. No redirect.`);
+        // এখানে আপনি চাইলে অন্য কোনো কাজ করতে পারেন, যেমন লগইন ফর্ম দেখানো
+    }
+})(); // ফাংশনটি অবিলম্বে কল করা হচ্ছে (Immediately Invoked Function Expression - IIFE)
+
 
     </script>
 
 </body>
-</html>
+    </html>

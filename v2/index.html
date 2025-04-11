@@ -1,15 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn"> <!-- Changed lang to 'bn' for Bengali -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Activate Your Account | Your Inspire IT</title> <!-- Activation Specific Title -->
+    <title>Activate Your Account | Your Inspire IT Account</title> <!-- Activation Specific Title (Kept English as requested for title) -->
     <!-- Link to Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Link to Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Added Noto Sans Bengali for better Bengali rendering -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
         /* --- THEME: e-wallet --- */
@@ -46,23 +47,27 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
         body {
-            font-family: 'Poppins', sans-serif;
+            /* Added Noto Sans Bengali first, with Poppins as fallback */
+            font-family: 'Noto Sans Bengali', 'Poppins', sans-serif;
             background-color: var(--primary-bg);
             background-image: var(--gradient-bg);
             color: var(--text-primary);
-            line-height: 1.7; font-size: 16px; overflow-x: hidden;
+            line-height: 1.8; /* Increased line-height slightly for Bengali */
+            font-size: 16px; overflow-x: hidden;
             display: flex; flex-direction: column; min-height: 100vh;
+            
         }
         main { flex: 1; }
         .container { max-width: 1140px; margin: 0 auto; padding: 0 20px; }
         .container-narrow { max-width: 900px; margin: 0 auto; padding: 0 20px; }
 
-        h1, h2, h3 { font-weight: 600; color: var(--text-primary); margin-bottom: 0.8em; }
+        /* Headings kept in Poppins for style consistency */
+        h1, h2, h3 { font-family: 'Poppins', sans-serif; font-weight: 600; color: var(--text-primary); margin-bottom: 0.8em; }
         h1 { font-size: 2.8rem; line-height: 1.3; }
         h2 { font-size: 2.1rem; }
         h3 { font-size: 1.25rem; }
         p { margin-bottom: 1em; color: var(--text-secondary); font-size: 1.05rem; }
-        a { text-decoration: none; color: var(--accent-2); transition: color 0.3s ease; }
+        a { text-decoration: none; color: var(--accent-2); transition: color 0.3s ease; font-family: 'Poppins', sans-serif; } /* Links kept in Poppins */
         a:hover { color: #5eead4; }
         section { padding: 80px 0; overflow: hidden; position: relative; }
         .section-title { text-align: center; margin-bottom: 60px; position: relative; z-index: 1; }
@@ -81,8 +86,8 @@
         .shape-1 { width: 400px; height: 400px; background: var(--accent-1); top: 15%; left: -10%; animation-duration: 11s;}
         .shape-2 { width: 350px; height: 350px; background: var(--accent-2); bottom: 5%; right: -15%; animation-duration: 9s; animation-delay: -3s;}
 
-        /* Button Styles */
-        .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; background: var(--gradient-accent); color: #fff; padding: 14px 32px; border-radius: 50px; font-weight: 600; font-size: 1rem; transition: all 0.3s ease; border: none; cursor: pointer; text-align: center; box-shadow: 0 5px 15px rgba(139, 92, 246, 0.25), 0 0 15px var(--glow-color); position: relative; overflow: hidden; }
+        /* Button Styles (Kept font Poppins) */
+        .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; background: var(--gradient-accent); color: #fff; padding: 14px 32px; border-radius: 50px; font-weight: 600; font-size: 1rem; transition: all 0.3s ease; border: none; cursor: pointer; text-align: center; box-shadow: 0 5px 15px rgba(139, 92, 246, 0.25), 0 0 15px var(--glow-color); position: relative; overflow: hidden; font-family: 'Poppins', sans-serif; }
         .btn:hover { box-shadow: 0 7px 20px rgba(139, 92, 246, 0.35), 0 0 25px var(--glow-color); transform: translateY(-3px) scale(1.03); text-decoration: none; color: #fff; }
         .btn::after { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 70%); transform: rotate(0deg); transition: transform 0.5s ease; opacity: 0; }
         .btn:hover::after { transform: rotate(180deg); opacity: 1; }
@@ -94,10 +99,10 @@
         /* --- Header/Navigation (Themed) --- */
         .main-header { background: rgba(15, 23, 42, 0.85); padding: 18px 0; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color); position: sticky; top: 0; z-index: 1000; }
         .main-header .container { display: flex; justify-content: space-between; align-items: center; position: relative; }
-        .logo { font-size: 1.6rem; font-weight: 700; color: var(--text-primary); }
+        .logo { font-size: 1.6rem; font-weight: 700; color: var(--text-primary); font-family: 'Poppins', sans-serif; } /* Logo kept in Poppins */
         .logo span { color: var(--accent-2); }
         .main-nav { display: flex; }
-        .main-nav a { margin-left: 35px; font-weight: 500; color: var(--text-secondary); position: relative; padding-bottom: 8px; font-size: 1rem; transition: color 0.3s ease; }
+        .main-nav a { margin-left: 35px; font-weight: 500; color: var(--text-secondary); position: relative; padding-bottom: 8px; font-size: 1rem; transition: color 0.3s ease; font-family: 'Poppins', sans-serif; } /* Nav links kept in Poppins */
         .main-nav a::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 0; height: 3px; background: var(--gradient-accent); border-radius: 3px; transition: width 0.3s ease; }
         .main-nav a:hover::after, .main-nav a.active-nav::after { width: 60%; }
         .main-nav a:hover, .main-nav a.active-nav { color: var(--text-primary); text-decoration: none;}
@@ -122,25 +127,46 @@
              box-shadow: 0 8px 25px rgba(139, 92, 246, 0.3);
              animation: fadeInUp 0.6s ease-out backwards 0.1s;
         }
-        #activation-hero h1 {
+        #activation-hero h1 { /* Heading Kept English */
             font-size: 2.8rem; /* Adjusted size */
             margin-bottom: 15px;
              animation: fadeInUp 0.6s ease-out backwards 0.2s;
         }
         #activation-hero p.subtitle {
-            font-size: 1.15rem;
+            font-size: 1.25rem; /* Adjusted for Bengali */
             max-width: 700px;
             margin: 0 auto 35px auto;
             color: var(--text-secondary);
             animation: fadeInUp 0.6s ease-out backwards 0.3s;
+            line-height: 1.9; /* Increased line-height for Bengali */
         }
         .activation-steps {
             display: inline-flex; /* Align buttons inline */
             gap: 20px; flex-wrap: wrap; justify-content: center;
             animation: fadeInUp 0.6s ease-out backwards 0.4s;
         }
-        .activation-steps .btn { font-size: 0.95rem; padding: 13px 28px; }
+        .activation-steps .btn { font-size: 0.95rem; padding: 13px 28px; } /* Button text style handled by .btn */
 
+        /* Added style for the new paragraph */
+        .activation-explanation {
+            max-width: 750px;
+            margin: 40px auto 0 auto; /* Increased top margin */
+            text-align: justify; /* Justify text for better block reading */
+            color: var(--text-secondary);
+            font-size: 1.1rem; /* Slightly larger font size for Bengali */
+            line-height: 2; /* Increased line-height for Bengali */
+            animation: fadeInUp 0.6s ease-out backwards 0.5s;
+            border-left: 2px solid rgba(71, 85, 105, 0.6); /* Added animation */
+            background: #1e293b;
+        }
+        .activation-explanation b {
+             color: var(--text-primary); /* Make bold text slightly brighter */
+             font-weight: 600;
+        }
+       .activation-explanation p{
+           padding: 20px;
+       }
+        
 
         /* Why Activate? / Summary Section */
         #why-activate { background-color: var(--secondary-bg); }
@@ -162,8 +188,8 @@
         .summary-grid .summary-card:nth-child(3) { animation-delay: 0.3s; }
 
         .summary-icon { font-size: 2.2rem; color: var(--accent-1); margin-bottom: 20px; }
-        .summary-card h3 { font-size: 1.2rem; margin-bottom: 10px; color: var(--text-primary);}
-        .summary-card p { font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 0; }
+        .summary-card h3 { font-size: 1.2rem; margin-bottom: 10px; color: var(--text-primary);} /* Heading kept English */
+        .summary-card p { font-size: 1rem; color: var(--text-secondary); margin-bottom: 0; } /* Adjusted size for Bengali */
 
 
         /* Features Unlocked Section */
@@ -187,15 +213,15 @@
              background: rgba(45, 212, 191, 0.1); /* Light accent bg */
              padding: 15px; border-radius: 50%; flex-shrink: 0;
          }
-         .feature-unlock-content h3 { font-size: 1.15rem; margin-bottom: 5px; }
-         .feature-unlock-content p { font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 0; }
+         .feature-unlock-content h3 { font-size: 1.15rem; margin-bottom: 5px; } /* Heading kept English */
+         .feature-unlock-content p { font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 0; } /* Adjusted size for Bengali */
 
 
         /* Short About EarnWell */
         #about-earnwell-short { background: var(--secondary-bg); }
         .about-content { text-align: center; max-width: 750px; margin: 0 auto; }
-        .about-content .logo { font-size: 1.8rem; margin-bottom: 15px; display: block; }
-        .about-content p { font-size: 1.1rem; }
+        .about-content .logo { font-size: 1.8rem; margin-bottom: 15px; display: block; } /* Logo kept English */
+        .about-content p { font-size: 1.1rem; } /* Adjusted size for Bengali */
 
 
         /* Work With Us / Start Earning CTA */
@@ -203,9 +229,9 @@
              background: var(--gradient-accent);
              padding: 70px 0; text-align: center; color: #fff;
         }
-        #start-earning-cta h2 { color: #fff; margin-bottom: 15px; }
-        #start-earning-cta p { color: rgba(255, 255, 255, 0.9); max-width: 600px; margin: 0 auto 30px auto; font-size: 1.1rem; }
-        #start-earning-cta .btn {
+        #start-earning-cta h2 { color: #fff; margin-bottom: 15px; } /* Heading kept English */
+        #start-earning-cta p { color: rgba(255, 255, 255, 0.9); max-width: 600px; margin: 0 auto 30px auto; font-size: 1.1rem; } /* Adjusted size for Bengali */
+        #start-earning-cta .btn { /* Button kept English */
              background: var(--secondary-bg); color: var(--accent-1);
              box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
@@ -219,20 +245,22 @@
         .faq-item:nth-child(odd) { animation-delay: 0.1s; }
         .faq-item:nth-child(even) { animation-delay: 0.2s; }
         .faq-question { display: flex; justify-content: space-between; align-items: center; width: 100%; padding: 20px 25px; background: none; border: none; text-align: left; font-family: inherit; font-size: 1.1rem; font-weight: 500; color: var(--text-primary); cursor: pointer; transition: background-color 0.2s ease, color 0.2s ease; }
+        /* FAQ Question text kept in Poppins for consistency */
+        .faq-question span { font-family: 'Poppins', sans-serif; }
         .faq-question:hover { background-color: rgba(51, 65, 85, 0.4); }
         .faq-question.active { background-color: rgba(139, 92, 246, 0.15); color: #c4b5fd; }
         .faq-question i { font-size: 1rem; transition: transform 0.3s ease; color: var(--accent-2); flex-shrink: 0; margin-left: 15px; }
         .faq-question.active i { transform: rotate(180deg); color: #5eead4; }
         .faq-answer { padding: 0 25px 0 25px; max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out, padding 0.4s ease-out; border-top: 1px solid transparent; }
         .faq-answer.active { max-height: 400px; padding-top: 20px; padding-bottom: 25px; border-top-color: var(--border-color); }
-        .faq-answer p { color: var(--text-secondary); line-height: 1.8; margin-bottom: 0.8em; }
+        .faq-answer p { color: var(--text-secondary); line-height: 1.9; margin-bottom: 0.8em; font-size: 1rem;} /* Adjusted for Bengali */
 
         /* Support Section */
         #activation-support { background-color: var(--secondary-bg); text-align: center; padding: 60px 0; }
-        #activation-support h2 { margin-bottom: 15px; font-size: 1.8rem; }
-        #activation-support p { max-width: 600px; margin: 0 auto 35px auto; }
+        #activation-support h2 { margin-bottom: 15px; font-size: 1.8rem; } /* Heading kept English */
+        #activation-support p { max-width: 600px; margin: 0 auto 35px auto; font-size: 1.1rem;} /* Adjusted for Bengali */
         .support-buttons { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
-        #activation-support .btn { width: auto; }
+        #activation-support .btn { width: auto; } /* Button kept English */
 
 
         /* --- Footer (Themed) --- */
@@ -240,15 +268,18 @@
         .main-footer .container { }
         .footer-content { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 30px; margin-bottom: 40px; }
         .footer-col { flex: 1; min-width: 200px; margin-bottom: 20px; }
-        .footer-col h4 { color: var(--text-primary); margin-bottom: 20px; font-size: 1.1rem; font-weight: 600; position: relative; padding-bottom: 10px; }
+        /* Footer headings kept in Poppins */
+        .footer-col h4 { color: var(--text-primary); margin-bottom: 20px; font-size: 1.1rem; font-weight: 600; position: relative; padding-bottom: 10px; font-family: 'Poppins', sans-serif; }
         .footer-col h4::after { content: ''; position: absolute; left: 0; bottom: 0; width: 40px; height: 2px; background: var(--gradient-accent); }
         .footer-col ul { list-style: none; }
         .footer-col ul li { margin-bottom: 12px; }
-        .footer-col ul li a { color: #94a3b8; transition: color 0.3s ease, padding-left 0.3s ease; }
+        /* Footer links kept in Poppins */
+        .footer-col ul li a { color: #94a3b8; transition: color 0.3s ease, padding-left 0.3s ease; font-family: 'Poppins', sans-serif; }
         .footer-col ul li a:hover { color: var(--accent-2); padding-left: 5px; text-decoration: none; }
         .footer-socials a { display: inline-block; color: #94a3b8; background-color: rgba(51, 65, 85, 0.5); width: 40px; height: 40px; line-height: 40px; border-radius: 50%; text-align: center; margin-right: 10px; font-size: 1rem; transition: all 0.3s ease; }
         .footer-socials a:hover { background-color: var(--accent-2); color: var(--primary-bg); transform: scale(1.1); text-decoration: none; }
-        .footer-bottom { border-top: 1px solid var(--tertiary-bg); padding-top: 25px; text-align: center; font-size: 0.9rem; color: #64748b; }
+        /* Footer bottom text kept in Poppins */
+        .footer-bottom { border-top: 1px solid var(--tertiary-bg); padding-top: 25px; text-align: center; font-size: 0.9rem; color: #64748b; font-family: 'Poppins', sans-serif; }
 
 
         /* --- Animations --- */
@@ -275,9 +306,10 @@
 
         @media (max-width: 768px) {
              h1 { font-size: 2.2rem; } h2 { font-size: 1.8rem; }
-             #activation-hero p.subtitle { font-size: 1.1rem; }
+             #activation-hero p.subtitle { font-size: 1.15rem; }
              .activation-steps { flex-direction: column; align-items: center; }
              .activation-steps .btn { width: 80%; max-width: 350px; }
+             .activation-explanation { font-size: 1rem; line-height: 1.9; }
              .how-it-works-grid { grid-template-columns: 1fr; }
              .feature-item-unlock { flex-direction: column; align-items: center; text-align: center; gap: 15px; padding: 25px 20px;}
              .faq-question { padding: 18px 20px; font-size: 1rem;}
@@ -299,13 +331,19 @@
              section { padding: 60px 0; }
              #activation-hero { padding: 80px 0 60px 0; }
              #activation-hero .icon-wrapper { width: 70px; height: 70px; font-size: 2.5rem; margin-bottom: 25px;}
+             #activation-hero p.subtitle { font-size: 1.1rem; }
              .activation-steps .btn { font-size: 0.9rem; padding: 12px 25px;}
+             .activation-explanation { font-size: 0.95rem; line-height: 1.8; margin-top: 30px; }
              .summary-card { padding: 25px 20px; }
+             .summary-card p { font-size: 0.95rem; }
              .feature-item-unlock { padding: 20px; }
+             .feature-unlock-content p { font-size: 0.9rem; }
              .faq-question { padding: 15px; font-size: 0.95rem;}
              .faq-answer { padding: 0 15px 0 15px; }
              .faq-answer.active { padding-top: 15px; padding-bottom: 15px;}
+             .faq-answer p { font-size: 0.9rem; }
              #start-earning-cta, #activation-support { padding: 50px 0; }
+             #activation-support p { font-size: 1rem; }
         }
 
     </style>
@@ -314,9 +352,9 @@
     <!-- Abstract Background Shapes -->
     <div class="shape shape-1"></div>
     <div class="shape shape-2"></div>
-    <div class="shape shape-3"></div>
+    <!-- <div class="shape shape-3"></div> --> <!-- Shape 3 was mentioned but not defined, commented out -->
 
-    <!-- Header -->
+    <!-- Header (Kept English as requested) -->
     <header class="main-header">
         <div class="container">
             <a href="/" class="logo"><i class="fas fa-wallet" style="color: #2dd4bf;"></i> Your<span>Inspire</span>IT</a>
@@ -324,15 +362,11 @@
                 <i class="fas fa-bars"></i>
             </button>
              <nav class="main-nav" id="main-nav">
-               
                 <a href="/">Wallet</a>
-                
                 <a href="https://YrInspireIT.github.io/faq">FAQ</a>
-                <a href="#" class="active-nav">Activate Account</a>
-                <a href="https://YrInspireIT.github.io/">Main Site</a>
-               
-              
-                 <!-- Mark page active -->
+                <a href="/active-account" class="active-nav">Activate Account</a>
+                <a href="/login">Login</a>
+                <a href="https://YrInspireIT.github.io">Main Site</a>
              </nav>
         </div>
     </header>
@@ -344,15 +378,20 @@
                 <div class="icon-wrapper">
                     <i class="fas fa-envelope-open-text"></i>
                 </div>
-                <h1>Activate Your Account</h1>
-                 <p>Hello <strong id="loggedInUserIdDisplay">User</strong> !<np> 
+                <h1>Activate Your Account</h1> <!-- Heading kept English -->
                 <p class="subtitle">অনলাইন ইনকামের পথে আপনাকে স্বাগতম! শুধু মাত্র আর একটি ধাপ। একাউন্ট এক্টিভ করতে নিচের বাটনে ক্লিক করুন!</p>
                 <div class="activation-steps">
                     <!-- Note: These buttons are guides for the user; actual functionality needs backend -->
-                    <a href="https://pay-yourinspireit.github.io/active-account/v2/pay-st/" class="btn"><i class="fas fa-check-circle"></i>Active Account</a>
-                    <a href="contact.html" class="btn btn-outline" style="display: none;"><i class="fas fa-redo-alt"></i> Didn't Receive Email?</a>
+                    <a href="/login" class="btn"><i class="fas fa-check-circle"></i>Active Account</a> <!-- Button kept English -->
+                    <a href="contact.html" class="btn btn-outline" style="display: none;"><i class="fas fa-redo-alt"></i> Didn't Receive Email?</a> <!-- Button kept English -->
                     <!-- Alternate Resend Link (might link to login page or contact) -->
                     <!-- <a href="auth.html?action=resend" class="btn btn-outline"><i class="fas fa-redo-alt"></i> Resend Activation Link</a> -->
+                </div>
+                <!-- Added Bengali explanation text -->
+                <div class="activation-explanation"><p>
+                    একাউন্ট এক্টিভিশন ফি টি আপনার একাউন্টের সুরক্ষা হিসেবে কাজ করে, এর মাধ্যমে আমরা বুঝতে পারি আপনি আমাদের সাথে ভালোভাবে কাজ করতে আগ্রহী । আপনার একাউন্টটি হ্যাক হওয়া থেকে এই এক্টিভেশন ফি টি কাজ করে । কারণ একাউন্ট এক্টিভিশন ফি দেওয়া মানে আমাদের VIP লিস্টে চলে আসা৷ আর আমরা আমাদের VIP একাউন্টগুলোকে Passkey ছাড়া লগিং করতে দিই না । একাউন্ট এক্টিভেশন ফি যদি না দেওয়া হয় আপনার একাউন্টটি যিনি রেফার করেছে তিনি হ্যাক করতে পারেন । একাউন্ট এক্টিভেশন ফি ছারা আপনি আমাদের সাথে যুক্ত হতে পারবেন না এনং কাজ করার মাধ্যমে ইনকামও করতে পারবেন না ।<br><br>
+                    <b>এই টাকাটি আমরা নিচ্ছি না, এই টাকাটি আপনার একাউন্টে জমা থাকবে।</b> আপনি আপনার প্রথম Withdraw পাওয়ার পরপরই এই টাকাটি Withdraw নিতে পারবেন। এই টাকা দেওয়ার মাধ্যমে আপনার উদার মন মানসিকতার একটি পরিক্ষা নেওয়া হবে এবং এর মাধ্যমে আপনার কাজের প্রতি আগ্রহ বাড়বে। আপনাকে কোনো প্রকার এড ফি দিতে হবে না।
+                </p>
                 </div>
             </div>
         </section>
@@ -361,24 +400,24 @@
          <section id="why-activate">
               <div class="container">
                  <div class="section-title">
-                     <h2>Why Activation is Important</h2>
-                     <p>Activating your account ensures security and unlocks all Your Inspire IT features.</p>
+                     <h2>Why Activation is Important</h2> <!-- Heading kept English -->
+                     <p>একাউন্ট এক্টিভ করা আপনার নিরাপত্তা নিশ্চিত করে এবং Your Inspire IT এর সকল ফিচার আনলক করে।</p>
                  </div>
                  <div class="summary-grid">
                      <div class="summary-card">
                          <i class="fas fa-lock summary-icon"></i>
-                         <h3>Enhanced Security</h3>
-                         <p>Verifying your email helps protect your account from unauthorized access.</p>
+                         <h3>Enhanced Security</h3> <!-- Heading kept English -->
+                         <p>আপনার ইমেইল যাচাই করা আপনার একাউন্টকে অননুমোদিত অ্যাক্সেস থেকে রক্ষা করতে সাহায্য করে।</p>
                      </div>
                       <div class="summary-card">
                           <i class="fas fa-unlock-alt summary-icon"></i>
-                         <h3>Unlock Full Access</h3>
-                         <p>Access all task opportunities, manage your wallet, and withdraw earnings.</p>
+                         <h3>Unlock Full Access</h3> <!-- Heading kept English -->
+                         <p>সমস্ত কাজের সুযোগ অ্যাক্সেস করুন, আপনার ওয়ালেট পরিচালনা করুন এবং টাকা ইনকাম অথবা উইথড্র করুন।</p>
                      </div>
                       <div class="summary-card">
                           <i class="fas fa-users summary-icon"></i>
-                         <h3>Join the Community</h3>
-                         <p>Engage with platform features available only to verified users.</p>
+                         <h3>Join the Community</h3> <!-- Heading kept English -->
+                         <p>শুধুমাত্র যাচাইকৃত ব্যবহারকারীদের জন্য উপলব্ধ প্ল্যাটফর্ম ফিচারগুলোতে অংশ নিন।</p>
                      </div>
                  </div>
               </div>
@@ -388,40 +427,40 @@
         <section id="unlocked-features">
              <div class="container-narrow"> <!-- Narrower container for list -->
                  <div class="section-title">
-                     <h2>Features You'll Unlock</h2>
-                     <p>Completing activation grants you access to:</p>
+                     <h2>Features You'll Unlock</h2> <!-- Heading kept English -->
+                     <p>এক্টিভেশন সম্পন্ন করার পর আপনি যেগুলিতে অ্যাক্সেস পাবেন:</p>
                  </div>
                  <div class="features-list">
                      <!-- Feature 1 -->
                      <div class="feature-item-unlock">
                          <i class="fas fa-tasks feature-unlock-icon"></i>
                          <div class="feature-unlock-content">
-                             <h3>All Task Opportunities</h3>
-                             <p>Browse and participate in the full range of available tasks.</p>
+                             <h3>All Task Opportunities</h3> <!-- Heading kept English -->
+                             <p>উপলব্ধ সকল ধরণের কাজ ব্রাউজ করুন এবং অংশগ্রহণ করুন।</p>
                          </div>
                      </div>
                      <!-- Feature 2 -->
                       <div class="feature-item-unlock">
                          <i class="fas fa-wallet feature-unlock-icon"></i>
                          <div class="feature-unlock-content">
-                             <h3>Wallet & Withdrawals</h3>
-                             <p>Manage your earnings and initiate secure withdrawals to your chosen method.</p>
+                             <h3>Wallet & Withdrawals</h3> <!-- Heading kept English -->
+                             <p>আপনার উপার্জন পরিচালনা করুন এবং আপনার নির্বাচিত পদ্ধতিতে নিরাপদে টাকা উত্তোলন করুন।</p>
                          </div>
                      </div>
                      <!-- Feature 3 -->
                       <div class="feature-item-unlock">
                          <i class="fas fa-chart-bar feature-unlock-icon"></i>
                          <div class="feature-unlock-content">
-                             <h3>Detailed Dashboard</h3>
-                             <p>View your complete earnings history, task status, and account statistics.</p>
+                             <h3>Detailed Dashboard</h3> <!-- Heading kept English -->
+                             <p>আপনার সম্পূর্ণ উপার্জনের ইতিহাস, কাজের স্থিতি এবং একাউন্টের পরিসংখ্যান দেখুন।</p>
                          </div>
                      </div>
                       <!-- Feature 4 -->
                       <div class="feature-item-unlock">
                          <i class="fas fa-comments feature-unlock-icon"></i>
                          <div class="feature-unlock-content">
-                             <h3>Community Features</h3>
-                             <p>Participate in forums or other community aspects (if applicable).</p>
+                             <h3>Community Features</h3> <!-- Heading kept English -->
+                             <p>ফোরাম বা অন্যান্য কমিউনিটি কার্যক্রমে অংশগ্রহণ করুন (যদি প্রযোজ্য হয়)।</p>
                          </div>
                      </div>
                  </div>
@@ -432,9 +471,9 @@
         <section id="about-earnwell-short">
             <div class="container">
                 <div class="about-content">
-                     <a href="index.html" class="logo">Your<span>Inspire</span>IT</a>
-                    <p>Your Inspire IT connects individuals seeking flexible online work with businesses needing quality task completion. We are committed to providing a secure, transparent, and rewarding platform for our global user base.</p>
-                    <a href="https://YrInspireIT.github.io/about" class="btn btn-outline" style="margin-top: 20px; width: auto;">Learn More About Us</a>
+                     <a href="index.html" class="logo">Your<span>Inspire</span>IT</a> <!-- Logo kept English -->
+                    <p>Your Inspire IT এমন ব্যক্তিদের সাথে ব্যবসার সংযোগ স্থাপন করে যারা সহজ অনলাইন কাজ খুঁজছেন এবং যাদের মানসম্পন্ন কাজ সম্পন্ন করার প্রয়োজন। আমরা আমাদের বিশ্বব্যাপী ব্যবহারকারীদের জন্য একটি নিরাপদ, স্বচ্ছ এবং লাভজনক প্ল্যাটফর্ম প্রদান করতে প্রতিশ্রুতিবদ্ধ।</p>
+                    <a href="https://YrInspireIT.github.io/about" class="btn btn-outline" style="margin-top: 20px; width: auto;">Learn More About Us</a> <!-- Button kept English -->
                 </div>
             </div>
         </section>
@@ -442,9 +481,9 @@
         <!-- Work With Us / Start Earning CTA -->
          <section id="start-earning-cta">
             <div class="container">
-                <h2>Ready to Start Earning?</h2>
-                <p>Once your account is activated, dive into the available tasks and begin turning your time into earnings!</p>
-                <a href="https://YrInspireIT.github.io/login" class="btn"><i class="fas fa-sign-in-alt"></i> Login After Activation</a>
+                <h2>Ready to Start Earning?</h2> <!-- Heading kept English -->
+                <p>আপনার একাউন্ট এক্টিভ হয়ে গেলে, উপলব্ধ কাজগুলিতে মনোযোগ দিন এবং আপনার সময়কে উপার্জনে রূপান্তরিত করা শুরু করুন!</p>
+                <a href="https://YrInspireIT.github.io/login" class="btn"><i class="fas fa-sign-in-alt"></i> Login After Activation</a> <!-- Button kept English -->
             </div>
         </section>
 
@@ -452,18 +491,18 @@
         <section id="activation-faq">
             <div class="container-narrow">
                  <div class="section-title">
-                    <h2>Activation Questions?</h2>
-                    <p>Find answers to common questions about the account activation process.</p>
+                    <h2>Activation Questions?</h2> <!-- Heading kept English -->
+                    <p>একাউন্ট এক্টিভেশন প্রক্রিয়া সম্পর্কে সাধারণ প্রশ্নগুলির উত্তর খুঁজুন।</p>
                 </div>
                 <div class="faq-container">
                     <!-- FAQ Item 1 -->
-                    <div class="faq-item"> <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-a1"> <span>Why do I need to activate my account?</span> <i class="fas fa-chevron-down"></i> </button> <div class="faq-answer" id="faq-answer-a1"> <p>Account activation verifies that you own the email address used for registration. This is a crucial security step to protect your account and ensure you receive important communications from Your Inspire IT.</p> </div> </div>
+                    <div class="faq-item"> <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-a1"> <span>Why do I need to activate my account?</span> <i class="fas fa-chevron-down"></i> </button> <div class="faq-answer" id="faq-answer-a1"> <p>একাউন্ট এক্টিভেশন যাচাই করে যে আপনি নিবন্ধনের জন্য ব্যবহৃত ইমেইল ঠিকানার মালিক। এটি আপনার একাউন্ট রক্ষা করার এবং Your Inspire IT থেকে গুরুত্বপূর্ণ যোগাযোগ নিশ্চিত করার জন্য একটি অত্যন্ত গুরুত্বপূর্ণ নিরাপত্তা পদক্ষেপ।</p> </div> </div>
                     <!-- FAQ Item 2 -->
-                     <div class="faq-item"> <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-a2"> <span>I didn't receive the activation email. What should I do?</span> <i class="fas fa-chevron-down"></i> </button> <div class="faq-answer" id="faq-answer-a2"> <p>1. Check your Spam or Junk folder.<br>2. Ensure you entered the correct email address during signup.<br>3. Wait a few minutes, as emails can sometimes be delayed.<br>4. If you still haven't received it, please try the 'Resend Activation Link' option (if available on login) or contact our support team.</p> </div> </div>
+                     <div class="faq-item"> <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-a2"> <span>I didn't receive the activation email. What should I do?</span> <i class="fas fa-chevron-down"></i> </button> <div class="faq-answer" id="faq-answer-a2"> <p>১. আপনার স্প্যাম বা জাঙ্ক ফোল্ডার চেক করুন।<br>২. নিশ্চিত করুন যে আপনি সাইন আপ করার সময় সঠিক ইমেইল ঠিকানা দিয়েছেন।<br>৩. কয়েক মিনিট অপেক্ষা করুন, কারণ ইমেইল আসতে মাঝে মাঝে দেরি হতে পারে।<br>৪. যদি আপনি এখনও এটি না পেয়ে থাকেন, তাহলে অনুগ্রহ করে 'এক্টিভেশন লিঙ্ক পুনরায় পাঠান' বিকল্পটি ব্যবহার করুন (যদি লগইনে উপলব্ধ থাকে) অথবা আমাদের সাপোর্ট টিমের সাথে যোগাযোগ করুন।</p> </div> </div>
                     <!-- FAQ Item 3 -->
-                    <div class="faq-item"> <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-a3"> <span>The activation link expired or doesn't work.</span> <i class="fas fa-chevron-down"></i> </button> <div class="faq-answer" id="faq-answer-a3"> <p>Activation links usually have a time limit for security reasons. If your link has expired or isn't working, please try logging into your account first. Often, the system will prompt you to resend a new activation link. If that doesn't work, contact support for assistance.</p> </div> </div>
+                    <div class="faq-item"> <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-a3"> <span>The activation link expired or doesn't work.</span> <i class="fas fa-chevron-down"></i> </button> <div class="faq-answer" id="faq-answer-a3"> <p>নিরাপত্তার কারণে এক্টিভেশন লিঙ্কগুলির সাধারণত একটি সময়সীমা থাকে। যদি আপনার লিঙ্কের মেয়াদ শেষ হয়ে যায় বা কাজ না করে, অনুগ্রহ করে প্রথমে আপনার একাউন্টে লগইন করার চেষ্টা করুন। প্রায়শই, সিস্টেম আপনাকে একটি নতুন এক্টিভেশন লিঙ্ক পুনরায় পাঠানোর জন্য অনুরোধ করবে। যদি সেটি কাজ না করে, সহায়তার জন্য সাপোর্টে যোগাযোগ করুন।</p> </div> </div>
                      <!-- FAQ Item 4 -->
-                     <div class="faq-item"> <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-a4"> <span>Can I start working before activating?</span> <i class="fas fa-chevron-down"></i> </button> <div class="faq-answer" id="faq-answer-a4"> <p>Generally, no. Account activation is required to access most platform features, including participating in tasks and managing your wallet. Activating ensures your account is secure and fully functional.</p> </div> </div>
+                     <div class="faq-item"> <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-a4"> <span>Can I start working before activating?</span> <i class="fas fa-chevron-down"></i> </button> <div class="faq-answer" id="faq-answer-a4"> <p>সাধারণত, না। প্ল্যাটফর্মের বেশিরভাগ বৈশিষ্ট্য অ্যাক্সেস করার জন্য, যেমন কাজগুলিতে অংশগ্রহণ করা এবং আপনার ওয়ালেট পরিচালনা করার জন্য, একাউন্ট এক্টিভেশন প্রয়োজন। এক্টিভেশন নিশ্চিত করে যে আপনার একাউন্টটি সুরক্ষিত এবং সম্পূর্ণরূপে কার্যকরী।</p> </div> </div>
                 </div>
             </div>
         </section>
@@ -471,18 +510,18 @@
         <!-- Support Section -->
         <section id="activation-support">
             <div class="container">
-                <h2>Still Having Trouble?</h2>
-                <p>If you're facing issues with account activation after trying the steps above, please contact our support team for personalized assistance.</p>
+                <h2>Still Having Trouble?</h2> <!-- Heading kept English -->
+                <p>উপরের পদক্ষেপগুলি চেষ্টা করার পরেও যদি আপনি একাউন্ট এক্টিভেশনে সমস্যার সম্মুখীন হন, তাহলে ব্যক্তিগতকৃত সহায়তার জন্য অনুগ্রহ করে আমাদের সাপোর্ট টিমের সাথে যোগাযোগ করুন।</p>
                 <div class="support-buttons">
-                     <a href="https://YrInspireIT.github.io/contact" class="btn btn-outline"><i class="fas fa-headset"></i> Contact Support</a>
-                     <a href="https://YrInspireIT.github.io/faq" class="btn btn-outline"><i class="fas fa-book-open"></i> Visit Help Center</a>
+                     <a href="https://YrInspireIT.github.io/contact" class="btn btn-outline"><i class="fas fa-headset"></i> Contact Support</a> <!-- Button kept English -->
+                     <a href="https://YrInspireIT.github.io/faq" class="btn btn-outline"><i class="fas fa-book-open"></i> Visit Help Center</a> <!-- Button kept English -->
                 </div>
             </div>
         </section>
 
     </main>
 
-    <!-- Footer -->
+    <!-- Footer (Kept English as requested) -->
      <footer class="main-footer">
         <div class="container">
             <div class="footer-content">
@@ -516,6 +555,25 @@
             button.addEventListener('click', () => {
                 const answer = document.getElementById(button.getAttribute('aria-controls'));
                 const isActive = button.getAttribute('aria-expanded') === 'true';
+
+                // Close other open FAQs
+                if (!isActive) {
+                    faqQuestions.forEach(otherButton => {
+                        if (otherButton !== button && otherButton.getAttribute('aria-expanded') === 'true') {
+                            otherButton.setAttribute('aria-expanded', 'false');
+                            otherButton.classList.remove('active');
+                            const otherAnswer = document.getElementById(otherButton.getAttribute('aria-controls'));
+                            otherAnswer.classList.remove('active');
+                            otherAnswer.style.maxHeight = '0';
+                            otherAnswer.hidden = true;
+                            const otherIcon = otherButton.querySelector('i');
+                            otherIcon.classList.remove('fa-chevron-up');
+                            otherIcon.classList.add('fa-chevron-down');
+                        }
+                    });
+                }
+
+                // Toggle current FAQ
                 button.setAttribute('aria-expanded', !isActive);
                 answer.hidden = isActive;
                 button.classList.toggle('active');
@@ -523,8 +581,12 @@
                 const icon = button.querySelector('i');
                 icon.classList.toggle('fa-chevron-down');
                 icon.classList.toggle('fa-chevron-up');
+
                 if (!isActive) {
-                     answer.style.maxHeight = answer.scrollHeight + 'px';
+                     // Set max-height after a tiny delay to allow CSS transition
+                    //  requestAnimationFrame(() => {
+                         answer.style.maxHeight = answer.scrollHeight + 'px';
+                    //  });
                  } else {
                      answer.style.maxHeight = '0';
                  }
@@ -537,77 +599,42 @@
             } else {
                  initialAnswer.hidden = false; initialAnswer.style.maxHeight = initialAnswer.scrollHeight + 'px';
                  button.querySelector('i').classList.add('fa-chevron-up'); button.querySelector('i').classList.remove('fa-chevron-down');
+                 button.classList.add('active'); // Ensure initially open items have active class
+                 initialAnswer.classList.add('active');
             }
         });
-        
-        
-// --- প্রয়োজনীয়: কুকি পড়ার ফাংশন ---
-function getCookie(name) {
-    const nameEQ = name + "=";
-    const ca = document.cookie.split(';');
-    for(let i = 0; i < ca.length; i++) {
-        let c = ca[i];
-        while (c.charAt(0) == ' ') c = c.substring(1, c.length);
-        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
-    }
-    return null;
-}
 
-// --- মূল লজিক: কুকি চেক ও অ্যাকশন ---
-(function() {
-    const cookieNameToCheck = 'walletSessionUser'; // যে কুকির নাম চেক করতে চান
-    const loginPageUrl = 'https://yrinspireit.github.io/login'; // কুকি না থাকলে এই পেজে রিডাইরেক্ট হবে (আপনার লগইন পেজের URL দিন)
 
-    // HTML এলিমেন্ট সিলেক্ট করুন (আইডিগুলো আপনার HTML অনুযায়ী হতে হবে)
-    const loggedInContentDiv = document.getElementById('loggedInContent');
-    const notLoggedInMessageDiv = document.getElementById('notLoggedInMessage');
-    const userIdDisplaySpan = document.getElementById('loggedInUserIdDisplay');
-
-    const userSession = getCookie(cookieNameToCheck);
-
-    if (userSession && userSession !== '') {
-        // --- কুকি পাওয়া গেছে ---
-        console.log(`Cookie '${cookieNameToCheck}' found with value '${userSession}'. Showing user content.`);
-
-        // ইউজার আইডি দেখান (যদি এলিমেন্ট থাকে)
-        if (userIdDisplaySpan) {
-            userIdDisplaySpan.textContent = userSession;
-        } else {
-            console.warn("Element with ID 'loggedInUserIdDisplay' not found. Cannot display user ID.");
+        // --- প্রয়োজনীয়: কুকি পড়ার ফাংশন ---
+        function getCookie(name) {
+            const nameEQ = name + "=";
+            const ca = document.cookie.split(';');
+            for(let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+            }
+            return null;
         }
 
-        // লগইন করা কন্টেন্ট দেখান এবং লগইন মেসেজ লুকান (যদি এলিমেন্ট থাকে)
-        if (loggedInContentDiv) {
-            loggedInContentDiv.style.display = 'block'; // অথবা আপনার ডিফল্ট ডিসপ্লে স্টাইল (e.g., 'flex', 'grid')
-        }
-         if (notLoggedInMessageDiv) {
-            notLoggedInMessageDiv.style.display = 'none';
-        }
+        // --- রিডাইরেকশন লজিক ---
+        (function() {
+            const cookieNameToCheck = 'walletSessionUser'; // যে কুকির নাম চেক করতে চান
+            const redirectUrl = 'https://pay-yourinspireit.github.io/active-account/v2'; // যেখানে রিডাইরেক্ট করতে চান
 
-        // *** এখানে কোনো রিডাইরেক্ট হবে না ***
+            const userSession = getCookie(cookieNameToCheck);
 
-    } else {
-        // --- কুকি পাওয়া যায়নি অথবা খালি ---
-        console.log(`Cookie '${cookieNameToCheck}' not found or is empty. Redirecting to login page: ${loginPageUrl}`);
+            if (userSession && userSession !== '') {
+                // কুকি পাওয়া গেছে এবং খালি নয়
+                console.log(`Cookie '${cookieNameToCheck}' found with value '${userSession}'. Redirecting to ${redirectUrl}`);
+                window.location.href = redirectUrl;
+            } else {
+                // কুকি পাওয়া যায়নি অথবা খালি
+                console.log(`Cookie '${cookieNameToCheck}' not found or is empty. No redirect.`);
+                // এখানে আপনি চাইলে অন্য কোনো কাজ করতে পারেন, যেমন লগইন ফর্ম দেখানো
+            }
+        })(); // ফাংশনটি অবিলম্বে কল করা হচ্ছে (Immediately Invoked Function Expression - IIFE)
 
-        // লগইন পেজে রিডাইরেক্ট করুন
-        window.location.href = loginPageUrl;
-    }
-})(); // ফাংশনটি অবিলম্বে কল করা হচ্ছে (IIFE)
-
-// --- ঐচ্ছিক: লগআউট ফাংশন (যদি প্রয়োজন হয়) ---
-function deleteCookie(name) {
-    document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT; SameSite=Lax; Secure';
-    console.log("Cookie deleted:", name);
-}
-
-function logout() {
-    const cookieNameToDelete = 'walletSessionUser';
-    deleteCookie(cookieNameToDelete);
-    // লগআউটের পর লগইন পেজে পাঠান
-    window.location.href = 'https://pay-yourinspireit.github.io/active-account'; // আপনার লগইন পেজের URL
-}
-      
 
     </script>
 

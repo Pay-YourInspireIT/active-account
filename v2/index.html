@@ -1,402 +1,440 @@
 <!DOCTYPE html>
-<html lang="bn"> <!-- Changed lang to 'bn' for Bengali -->
+<html lang="bn"> <!-- Language set to Bengali -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Activate Your Account | Your Inspire IT Account</title> <!-- Activation Specific Title (Kept English as requested for title) -->
+    <!-- Activation Specific Title (English) -->
+    <title>Activate Your Account | Your Inspire IT</title>
     <!-- Link to Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Link to Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Added Noto Sans Bengali for better Bengali rendering -->
+    <!-- Added Noto Sans Bengali for better Bengali rendering, Poppins as fallback -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
-        /* --- THEME: e-wallet --- */
+        /* --- THEME: Light & Professional (Applied from the first page) --- */
         :root {
-            /* Core Palette (Dark Mode Base) */
-            --primary-bg: #0f172a;
-            --secondary-bg: #1e293b;
-            --tertiary-bg: #334155;
-            --card-bg: rgba(30, 41, 59, 0.7);
-            --glass-bg: rgba(51, 65, 85, 0.4);
-            --text-primary: #e2e8f0;
-            --text-secondary: #94a3b8;
-            --border-color: rgba(71, 85, 105, 0.6);
-            --shadow-color: rgba(0, 0, 0, 0.4);
+            /* Core Palette (Light Mode Base) */
+            --primary-bg: #f8fafc; /* Very light gray/almost white */
+            --secondary-bg: #ffffff; /* White */
+            --card-bg: #ffffff;
+            --text-primary: #1e293b; /* Dark slate */
+            --text-secondary: #64748b; /* Lighter slate */
+            --border-color: #e2e8f0; /* Light gray border */
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -1px rgba(0, 0, 0, 0.05);
 
             /* Accent Palette */
-            --accent-1: #8b5cf6; /* Violet */
-            --accent-1-hover: #7c3aed;
-            --accent-2: #2dd4bf; /* Teal/Cyan */
-            --accent-2-hover: #14b8a6;
-            --glow-color: rgba(45, 212, 191, 0.5);
-
-             /* Gradients */
-             --gradient-accent: linear-gradient(135deg, var(--accent-1) 0%, var(--accent-2) 100%);
-             --gradient-bg: linear-gradient(180deg, #111827 0%, #0f172a 100%);
+            --accent-1: #7c3aed; /* Violet (slightly darker for better contrast) */
+            --accent-1-hover: #6d28d9;
+            --accent-2: #0d9488; /* Teal (slightly darker for better contrast) */
+            --accent-2-hover: #0f766e;
+            --gradient-accent: linear-gradient(135deg, var(--accent-1) 0%, var(--accent-2) 100%); /* Keep Gradient for Button */
 
              /* Status Colors */
-             --success-color: #34d399;
-             --warning-color: #fbbf24;
-             --danger-color: #f87171;
+             --success-color: #10b981; /* Emerald */
+             --warning-color: #f59e0b; /* Amber */
+             --danger-color: #ef4444; /* Red */
+             --info-color: #3b82f6; /* Blue */
+             --info-bg-light: #eff6ff; /* Light Blue BG for Notice */
+             --info-border-light: #bfdbfe; /* Lighter Blue Border */
+             --info-text-dark: #1e40af; /* Darker Blue Text */
         }
 
         /* --- Base Styles --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
         body {
-            /* Added Noto Sans Bengali first, with Poppins as fallback */
+            /* Primary font Noto Sans Bengali, fallback Poppins */
             font-family: 'Noto Sans Bengali', 'Poppins', sans-serif;
             background-color: var(--primary-bg);
-            background-image: var(--gradient-bg);
             color: var(--text-primary);
-            line-height: 1.8; /* Increased line-height slightly for Bengali */
+            line-height: 1.8; /* Adjusted line-height for Bengali readability */
             font-size: 16px; overflow-x: hidden;
             display: flex; flex-direction: column; min-height: 100vh;
-            
         }
         main { flex: 1; }
         .container { max-width: 1140px; margin: 0 auto; padding: 0 20px; }
         .container-narrow { max-width: 900px; margin: 0 auto; padding: 0 20px; }
 
-        /* Headings kept in Poppins for style consistency */
+        /* Headings use Poppins */
         h1, h2, h3 { font-family: 'Poppins', sans-serif; font-weight: 600; color: var(--text-primary); margin-bottom: 0.8em; }
         h1 { font-size: 2.8rem; line-height: 1.3; }
         h2 { font-size: 2.1rem; }
         h3 { font-size: 1.25rem; }
-        p { margin-bottom: 1em; color: var(--text-secondary); font-size: 1.05rem; }
-        a { text-decoration: none; color: var(--accent-2); transition: color 0.3s ease; font-family: 'Poppins', sans-serif; } /* Links kept in Poppins */
-        a:hover { color: #5eead4; }
-        section { padding: 80px 0; overflow: hidden; position: relative; }
-        .section-title { text-align: center; margin-bottom: 60px; position: relative; z-index: 1; }
+        p { margin-bottom: 1em; color: var(--text-secondary); font-size: 1.05rem; } /* Slightly larger default paragraph size */
+        /* Links use Poppins */
+        a { text-decoration: none; color: var(--accent-2); transition: color 0.3s ease; font-family: 'Poppins', sans-serif; }
+        a:hover { color: var(--accent-2-hover); }
+        section { padding: 70px 0; /* Adjusted padding */ overflow: hidden; position: relative; }
+        .section-title { text-align: center; margin-bottom: 50px; position: relative; z-index: 1; }
         .section-title h2 { margin-bottom: 15px; }
         .section-title p { max-width: 700px; margin: 0 auto; color: var(--text-secondary); font-size: 1.1rem; }
 
-        /* Glassmorphism Card Style */
-        .glass-card {
-            background: var(--card-bg); border-radius: 16px; border: 1px solid var(--border-color);
-            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-            box-shadow: 0 8px 32px 0 var(--shadow-color); padding: 30px 40px;
-            animation: fadeInUp 0.6s ease-out backwards; position: relative; z-index: 1;
+        /* Standard Card Style (Applied from Light Theme) */
+        .content-card, /* Generic card class */
+        .summary-card, /* Specific card types adopting the style */
+        .feature-item-unlock,
+        .faq-item {
+            background: var(--card-bg); /* Will be white */
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-md);
+            padding: 30px 35px;
+            animation: fadeInUp 0.5s ease-out backwards;
+            position: relative;
+            z-index: 1;
+            margin-bottom: 20px; /* Added consistent margin-bottom */
         }
-        /* Abstract background shapes */
-        .shape { position: absolute; border-radius: 50%; opacity: 0.08; filter: blur(90px); z-index: 0; pointer-events: none; animation: float 8s infinite ease-in-out alternate; }
-        .shape-1 { width: 400px; height: 400px; background: var(--accent-1); top: 15%; left: -10%; animation-duration: 11s;}
-        .shape-2 { width: 350px; height: 350px; background: var(--accent-2); bottom: 5%; right: -15%; animation-duration: 9s; animation-delay: -3s;}
+        /* Ensure specific card paddings are consistent or adjusted */
+        .summary-card { padding: 30px 25px; text-align: center; }
+        .feature-item-unlock { padding: 25px 30px; display: flex; align-items: flex-start; gap: 25px;} /* Align start for light theme */
+        .faq-item { padding: 0; overflow: hidden; /* Padding handled by question/answer */ }
 
-        /* Button Styles (Kept font Poppins) */
-        .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; background: var(--gradient-accent); color: #fff; padding: 14px 32px; border-radius: 50px; font-weight: 600; font-size: 1rem; transition: all 0.3s ease; border: none; cursor: pointer; text-align: center; box-shadow: 0 5px 15px rgba(139, 92, 246, 0.25), 0 0 15px var(--glow-color); position: relative; overflow: hidden; font-family: 'Poppins', sans-serif; }
-        .btn:hover { box-shadow: 0 7px 20px rgba(139, 92, 246, 0.35), 0 0 25px var(--glow-color); transform: translateY(-3px) scale(1.03); text-decoration: none; color: #fff; }
-        .btn::after { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 70%); transform: rotate(0deg); transition: transform 0.5s ease; opacity: 0; }
-        .btn:hover::after { transform: rotate(180deg); opacity: 1; }
-        .btn-outline { background: transparent; color: var(--accent-2); border: 2px solid var(--accent-2); box-shadow: none; }
-        .btn-outline:hover { background: rgba(45, 212, 191, 0.1); color: var(--accent-2); border-color: var(--accent-2); box-shadow: 0 0 15px rgba(45, 212, 191, 0.2); transform: translateY(-3px); }
+        /* Remove abstract shapes */
+        .shape { display: none; }
+
+        /* Button Styles (Applied from Light Theme) */
+        .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; background: var(--gradient-accent); color: #fff; padding: 12px 30px; border-radius: 50px; font-weight: 600; font-size: 0.95rem; transition: all 0.3s ease; border: none; cursor: pointer; text-align: center; box-shadow: var(--shadow-sm); font-family: 'Poppins', sans-serif; }
+        .btn:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); text-decoration: none; color: #fff; }
+        .btn i { font-size: 0.9em; }
+        .btn-outline { background: transparent; color: var(--accent-1); border: 2px solid var(--accent-1); box-shadow: none; }
+        .btn-outline:hover { background: rgba(124, 58, 237, 0.05); color: var(--accent-1-hover); border-color: var(--accent-1-hover); box-shadow: none; transform: translateY(-2px); }
         .btn-outline i { margin-right: 8px; }
 
 
-        /* --- Header/Navigation (Themed) --- */
-        .main-header { background: rgba(15, 23, 42, 0.85); padding: 18px 0; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color); position: sticky; top: 0; z-index: 1000; }
+        /* --- Header/Navigation (Applied from Light Theme) --- */
+        .main-header {
+            background: rgba(255, 255, 255, 0.95); /* Slightly transparent white */
+            padding: 15px 0;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky; top: 0; z-index: 1000;
+        }
         .main-header .container { display: flex; justify-content: space-between; align-items: center; position: relative; }
-        .logo { font-size: 1.6rem; font-weight: 700; color: var(--text-primary); font-family: 'Poppins', sans-serif; } /* Logo kept in Poppins */
-        .logo span { color: var(--accent-2); }
+        /* Logo uses Poppins */
+        .logo { font-size: 1.5rem; font-weight: 700; color: var(--text-primary); font-family: 'Poppins', sans-serif; }
+        .logo i { color: var(--accent-2); margin-right: 5px;} /* Teal icon */
+        .logo span { color: var(--accent-1); } /* Violet span */
         .main-nav { display: flex; }
-        .main-nav a { margin-left: 35px; font-weight: 500; color: var(--text-secondary); position: relative; padding-bottom: 8px; font-size: 1rem; transition: color 0.3s ease; font-family: 'Poppins', sans-serif; } /* Nav links kept in Poppins */
-        .main-nav a::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 0; height: 3px; background: var(--gradient-accent); border-radius: 3px; transition: width 0.3s ease; }
-        .main-nav a:hover::after, .main-nav a.active-nav::after { width: 60%; }
+        /* Nav links use Poppins */
+        .main-nav a { margin-left: 30px; font-weight: 500; color: var(--text-secondary); position: relative; padding-bottom: 6px; font-size: 0.95rem; transition: color 0.3s ease; font-family: 'Poppins', sans-serif;}
+        .main-nav a::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 0; height: 2px; background: var(--gradient-accent); border-radius: 3px; transition: width 0.3s ease; }
+        .main-nav a:hover::after, .main-nav a.active-nav::after { width: 50%; }
         .main-nav a:hover, .main-nav a.active-nav { color: var(--text-primary); text-decoration: none;}
         .menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; background: none; border: none; color: var(--text-primary); }
 
-        /* --- Activation Page Specific Styles --- */
+        /* --- Activation Page Specific Styles (Adapted to Light Theme) --- */
 
         /* Activation Hero Section */
         #activation-hero {
-            padding: 100px 0 90px 0;
+            padding: 80px 0 70px 0; /* Adjusted padding */
             text-align: center;
+            background-color: var(--secondary-bg); /* White background */
+            border-bottom: 1px solid var(--border-color);
             position: relative;
             z-index: 1;
         }
          #activation-hero .icon-wrapper {
-             font-size: 3rem;
+             font-size: 2.8rem; /* Adjusted size */
              color: #fff;
-             background: var(--gradient-accent);
-             width: 80px; height: 80px; border-radius: 50%;
+             background: var(--gradient-accent); /* Use theme gradient */
+             width: 75px; height: 75px; border-radius: 50%;
              display: inline-flex; align-items: center; justify-content: center;
-             margin-bottom: 30px;
-             box-shadow: 0 8px 25px rgba(139, 92, 246, 0.3);
-             animation: fadeInUp 0.6s ease-out backwards 0.1s;
+             margin-bottom: 25px;
+             box-shadow: 0 6px 15px rgba(124, 58, 237, 0.2); /* Adjusted shadow */
+             animation: fadeInUp 0.5s ease-out backwards 0.1s;
         }
         #activation-hero h1 { /* Heading Kept English */
-            font-size: 2.8rem; /* Adjusted size */
+            font-size: 2.6rem; /* Adjusted size */
             margin-bottom: 15px;
-             animation: fadeInUp 0.6s ease-out backwards 0.2s;
+            color: var(--text-primary);
+             animation: fadeInUp 0.5s ease-out backwards 0.2s;
         }
         #activation-hero p.subtitle {
-            font-size: 1.25rem; /* Adjusted for Bengali */
+            font-size: 1.2rem; /* Adjusted for Bengali */
             max-width: 700px;
-            margin: 0 auto 35px auto;
+            margin: 0 auto 30px auto;
             color: var(--text-secondary);
-            animation: fadeInUp 0.6s ease-out backwards 0.3s;
-            line-height: 1.9; /* Increased line-height for Bengali */
+            animation: fadeInUp 0.5s ease-out backwards 0.3s;
+            line-height: 1.9;
         }
         .activation-steps {
-            display: inline-flex; /* Align buttons inline */
-            gap: 20px; flex-wrap: wrap; justify-content: center;
-            animation: fadeInUp 0.6s ease-out backwards 0.4s;
+            display: inline-flex;
+            gap: 15px; flex-wrap: wrap; justify-content: center;
+            animation: fadeInUp 0.5s ease-out backwards 0.4s;
         }
-        .activation-steps .btn { font-size: 0.95rem; padding: 13px 28px; } /* Button text style handled by .btn */
+        .activation-steps .btn { font-size: 0.9rem; padding: 11px 26px; } /* Slightly smaller button */
 
-        /* Added style for the new paragraph */
+        /* Activation Explanation Box (Light Theme Style) */
         .activation-explanation {
             max-width: 750px;
-            margin: 40px auto 0 auto; /* Increased top margin */
-            text-align: justify; /* Justify text for better block reading */
+            margin: 35px auto 0 auto; /* Adjusted margin */
+            text-align: justify;
             color: var(--text-secondary);
-            font-size: 1.1rem; /* Slightly larger font size for Bengali */
-            line-height: 2; /* Increased line-height for Bengali */
-            animation: fadeInUp 0.6s ease-out backwards 0.5s;
-            border-left: 2px solid rgba(71, 85, 105, 0.6); /* Added animation */
-            background: #1e293b;
+            font-size: 1.05rem; /* Adjusted font size for Bengali */
+            line-height: 1.9; /* Keep good line-height for Bengali */
+            animation: fadeInUp 0.5s ease-out backwards 0.5s;
+            border-left: 3px solid var(--accent-1); /* Use accent color for border */
+            background-color: #f8f8fa; /* Very light background for contrast */
+            padding: 15px 25px; /* Inner padding */
+            border-radius: 8px; /* Rounded corners */
+            box-shadow: var(--shadow-sm); /* Subtle shadow */
         }
         .activation-explanation b {
-             color: var(--text-primary); /* Make bold text slightly brighter */
+             color: var(--text-primary);
              font-weight: 600;
         }
        .activation-explanation p{
-           padding: 20px;
+           padding: 0; /* Remove padding from inner p tag */
+           margin-bottom: 0.8em; /* Spacing between paragraphs */
+           font-size: inherit; /* Inherit from parent */
+           line-height: inherit; /* Inherit from parent */
+           color: inherit; /* Inherit from parent */
        }
-        
+        .activation-explanation p:last-child {
+            margin-bottom: 0; /* No margin on last paragraph */
+        }
+
 
         /* Why Activate? / Summary Section */
-        #why-activate { background-color: var(--secondary-bg); }
+        #why-activate { background-color: var(--primary-bg); /* Off-white bg */ }
         .summary-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); /* Adjusted minmax */
+            gap: 25px;
         }
-        .summary-card {
-            background: var(--tertiary-bg); /* Use tertiary for contrast */
-            padding: 30px;
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-            text-align: center;
-            animation: fadeInUp 0.6s ease-out backwards;
-        }
+        /* .summary-card styling inherited from .content-card above */
         .summary-grid .summary-card:nth-child(1) { animation-delay: 0.1s; }
         .summary-grid .summary-card:nth-child(2) { animation-delay: 0.2s; }
         .summary-grid .summary-card:nth-child(3) { animation-delay: 0.3s; }
 
-        .summary-icon { font-size: 2.2rem; color: var(--accent-1); margin-bottom: 20px; }
-        .summary-card h3 { font-size: 1.2rem; margin-bottom: 10px; color: var(--text-primary);} /* Heading kept English */
-        .summary-card p { font-size: 1rem; color: var(--text-secondary); margin-bottom: 0; } /* Adjusted size for Bengali */
+        .summary-icon { font-size: 2rem; color: var(--accent-1); margin-bottom: 15px; }
+        .summary-card h3 { font-size: 1.15rem; margin-bottom: 10px; color: var(--text-primary);} /* Heading kept English */
+        .summary-card p { font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 0; line-height: 1.7; } /* Adjusted size */
 
 
         /* Features Unlocked Section */
-        #unlocked-features { background-color: var(--primary-bg); }
+        #unlocked-features { background-color: var(--secondary-bg); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); }
          .features-list { max-width: 800px; margin: 0 auto; }
-         .feature-item-unlock {
-            display: flex; align-items: center; gap: 25px;
-            background: var(--card-bg); /* Glass card */
-            padding: 25px 30px; border-radius: 12px; border: 1px solid var(--border-color);
-            margin-bottom: 20px;
-            backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
-            animation: fadeInUp 0.6s ease-out backwards;
+         /* .feature-item-unlock styling inherited from .content-card above */
+         .features-list .feature-item-unlock {
+             /* Uses base .feature-item-unlock style defined above */
+             background-color: var(--primary-bg); /* Slight contrast bg */
+             transition: background-color 0.3s ease;
          }
+         .features-list .feature-item-unlock:hover { background-color: #e2e8f0; } /* Hover effect */
+
          .features-list .feature-item-unlock:nth-child(1) { animation-delay: 0.1s; }
          .features-list .feature-item-unlock:nth-child(2) { animation-delay: 0.2s; }
          .features-list .feature-item-unlock:nth-child(3) { animation-delay: 0.3s; }
          .features-list .feature-item-unlock:nth-child(4) { animation-delay: 0.4s; }
 
          .feature-unlock-icon {
-             font-size: 1.8rem; color: var(--accent-2);
-             background: rgba(45, 212, 191, 0.1); /* Light accent bg */
-             padding: 15px; border-radius: 50%; flex-shrink: 0;
+             font-size: 1.6rem; color: var(--accent-2); /* Use theme accent */
+             flex-shrink: 0;
+             margin-top: 4px; /* Align with text */
+             /* Removed background circle from dark theme */
          }
-         .feature-unlock-content h3 { font-size: 1.15rem; margin-bottom: 5px; } /* Heading kept English */
-         .feature-unlock-content p { font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 0; } /* Adjusted size for Bengali */
+         .feature-unlock-content h3 { font-size: 1.1rem; margin-bottom: 8px; } /* Heading kept English */
+         .feature-unlock-content p { font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 0; line-height: 1.6; } /* Adjusted size */
 
 
-        /* Short About EarnWell */
-        #about-earnwell-short { background: var(--secondary-bg); }
+        /* Short About Section */
+        #about-earnwell-short { background: var(--primary-bg); }
         .about-content { text-align: center; max-width: 750px; margin: 0 auto; }
-        .about-content .logo { font-size: 1.8rem; margin-bottom: 15px; display: block; } /* Logo kept English */
-        .about-content p { font-size: 1.1rem; } /* Adjusted size for Bengali */
+        /* Logo uses Poppins */
+        .about-content .logo { font-family: 'Poppins', sans-serif; font-size: 1.8rem; margin-bottom: 15px; display: block; color: var(--text-primary); }
+        .about-content .logo i { color: var(--accent-2); }
+        .about-content .logo span { color: var(--accent-1); }
+        .about-content p { font-size: 1.05rem; } /* Adjusted size for Bengali */
 
 
-        /* Work With Us / Start Earning CTA */
+        /* Start Earning CTA Section */
         #start-earning-cta {
-             background: var(--gradient-accent);
-             padding: 70px 0; text-align: center; color: #fff;
+             background: var(--secondary-bg); /* White background */
+             padding: 60px 0; text-align: center;
+             border-top: 1px solid var(--border-color);
         }
-        #start-earning-cta h2 { color: #fff; margin-bottom: 15px; } /* Heading kept English */
-        #start-earning-cta p { color: rgba(255, 255, 255, 0.9); max-width: 600px; margin: 0 auto 30px auto; font-size: 1.1rem; } /* Adjusted size for Bengali */
-        #start-earning-cta .btn { /* Button kept English */
-             background: var(--secondary-bg); color: var(--accent-1);
-             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-         #start-earning-cta .btn:hover { background: #f0f0f0; color: var(--accent-1-hover); box-shadow: 0 7px 20px rgba(0, 0, 0, 0.3); }
+        #start-earning-cta h2 { color: var(--text-primary); margin-bottom: 15px; } /* Heading kept English */
+        #start-earning-cta p { color: var(--text-secondary); max-width: 600px; margin: 0 auto 30px auto; font-size: 1.05rem; } /* Adjusted size */
+        /* Button uses standard light theme style */
 
 
          /* FAQ Section (Activation Focused) */
         #activation-faq { background: var(--primary-bg); }
-        .faq-container { max-width: 850px; margin: 0 auto; }
-        .faq-item { background: var(--card-bg); margin-bottom: 15px; border-radius: 12px; border: 1px solid var(--border-color); overflow: hidden; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); animation: fadeInUp 0.5s ease-out backwards; }
+        .faq-container { max-width: 800px; margin: 0 auto; }
+        /* .faq-item styling inherited from .content-card */
+        .faq-item {
+             /* Uses base .faq-item style defined above */
+             background: var(--secondary-bg); /* White background for items */
+        }
         .faq-item:nth-child(odd) { animation-delay: 0.1s; }
         .faq-item:nth-child(even) { animation-delay: 0.2s; }
-        .faq-question { display: flex; justify-content: space-between; align-items: center; width: 100%; padding: 20px 25px; background: none; border: none; text-align: left; font-family: inherit; font-size: 1.1rem; font-weight: 500; color: var(--text-primary); cursor: pointer; transition: background-color 0.2s ease, color 0.2s ease; }
-        /* FAQ Question text kept in Poppins for consistency */
+        .faq-question {
+            display: flex; justify-content: space-between; align-items: center; width: 100%;
+            padding: 18px 25px; background: none; border: none; text-align: left;
+            font-family: inherit; font-size: 1.05rem; font-weight: 500; color: var(--text-primary);
+            cursor: pointer; transition: background-color 0.2s ease;
+        }
+        /* FAQ Question text uses Poppins */
         .faq-question span { font-family: 'Poppins', sans-serif; }
-        .faq-question:hover { background-color: rgba(51, 65, 85, 0.4); }
-        .faq-question.active { background-color: rgba(139, 92, 246, 0.15); color: #c4b5fd; }
-        .faq-question i { font-size: 1rem; transition: transform 0.3s ease; color: var(--accent-2); flex-shrink: 0; margin-left: 15px; }
-        .faq-question.active i { transform: rotate(180deg); color: #5eead4; }
-        .faq-answer { padding: 0 25px 0 25px; max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out, padding 0.4s ease-out; border-top: 1px solid transparent; }
-        .faq-answer.active { max-height: 400px; padding-top: 20px; padding-bottom: 25px; border-top-color: var(--border-color); }
-        .faq-answer p { color: var(--text-secondary); line-height: 1.9; margin-bottom: 0.8em; font-size: 1rem;} /* Adjusted for Bengali */
+        .faq-question:hover { background-color: #f8fafc; } /* Very light hover */
+        .faq-question.active { background-color: rgba(124, 58, 237, 0.05); color: var(--accent-1); } /* Subtle active state */
+        .faq-question i { font-size: 0.9rem; transition: transform 0.3s ease; color: var(--accent-2); flex-shrink: 0; margin-left: 15px; }
+        .faq-question.active i { transform: rotate(180deg); }
+        .faq-answer { padding: 0 25px 0 25px; max-height: 0; overflow: hidden; transition: max-height 0.35s ease-out, padding 0.35s ease-out; border-top: 1px solid transparent; }
+        .faq-answer.active { max-height: 400px; padding-top: 15px; padding-bottom: 20px; border-top-color: var(--border-color); }
+        .faq-answer p { color: var(--text-secondary); line-height: 1.8; margin-bottom: 0.8em; font-size: 0.95rem;} /* Adjusted for Bengali/English */
 
         /* Support Section */
-        #activation-support { background-color: var(--secondary-bg); text-align: center; padding: 60px 0; }
-        #activation-support h2 { margin-bottom: 15px; font-size: 1.8rem; } /* Heading kept English */
-        #activation-support p { max-width: 600px; margin: 0 auto 35px auto; font-size: 1.1rem;} /* Adjusted for Bengali */
-        .support-buttons { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
-        #activation-support .btn { width: auto; } /* Button kept English */
+        #activation-support { background-color: var(--primary-bg); text-align: center; padding: 60px 0 70px 0; }
+        #activation-support h2 { margin-bottom: 15px; font-size: 1.7rem; } /* Heading kept English */
+        #activation-support p { max-width: 600px; margin: 0 auto 35px auto; font-size: 1.05rem;} /* Adjusted */
+        .support-buttons { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+        #activation-support .btn { width: auto; } /* Button uses standard light theme style */
 
 
-        /* --- Footer (Themed) --- */
-        .main-footer { background-color: #0f172a; color: #94a3b8; padding: 50px 0 20px 0; margin-top: auto; border-top: 1px solid var(--tertiary-bg); }
+        /* --- Footer (Applied from Light Theme's Dark Footer) --- */
+        .main-footer { background-color: #0f172a; /* Dark footer */ color: #cbd5e1; padding: 50px 0 20px 0; margin-top: auto; border-top: 1px solid #334155; /* Darker border */ }
         .main-footer .container { }
         .footer-content { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 30px; margin-bottom: 40px; }
         .footer-col { flex: 1; min-width: 200px; margin-bottom: 20px; }
-        /* Footer headings kept in Poppins */
-        .footer-col h4 { color: var(--text-primary); margin-bottom: 20px; font-size: 1.1rem; font-weight: 600; position: relative; padding-bottom: 10px; font-family: 'Poppins', sans-serif; }
-        .footer-col h4::after { content: ''; position: absolute; left: 0; bottom: 0; width: 40px; height: 2px; background: var(--gradient-accent); }
-        .footer-col ul { list-style: none; }
-        .footer-col ul li { margin-bottom: 12px; }
-        /* Footer links kept in Poppins */
-        .footer-col ul li a { color: #94a3b8; transition: color 0.3s ease, padding-left 0.3s ease; font-family: 'Poppins', sans-serif; }
+        /* Footer headings use Poppins */
+        .footer-col h4 { font-family: 'Poppins', sans-serif; color: #f1f5f9; margin-bottom: 20px; font-size: 1.05rem; font-weight: 600; position: relative; padding-bottom: 10px; }
+        .footer-col h4::after { content: ''; position: absolute; left: 0; bottom: 0; width: 35px; height: 2px; background: var(--gradient-accent); }
+        .footer-col ul { list-style: none; padding: 0; }
+        .footer-col ul li { margin-bottom: 10px; }
+        /* Footer links use Poppins */
+        .footer-col ul li a { font-family: 'Poppins', sans-serif; color: #94a3b8; transition: color 0.3s ease, padding-left 0.3s ease; font-size: 0.9rem; }
         .footer-col ul li a:hover { color: var(--accent-2); padding-left: 5px; text-decoration: none; }
-        .footer-socials a { display: inline-block; color: #94a3b8; background-color: rgba(51, 65, 85, 0.5); width: 40px; height: 40px; line-height: 40px; border-radius: 50%; text-align: center; margin-right: 10px; font-size: 1rem; transition: all 0.3s ease; }
-        .footer-socials a:hover { background-color: var(--accent-2); color: var(--primary-bg); transform: scale(1.1); text-decoration: none; }
-        /* Footer bottom text kept in Poppins */
-        .footer-bottom { border-top: 1px solid var(--tertiary-bg); padding-top: 25px; text-align: center; font-size: 0.9rem; color: #64748b; font-family: 'Poppins', sans-serif; }
+        .footer-socials { display: none; /* Hidden */ }
+        .footer-socials a { display: inline-block; color: #94a3b8; background-color: #1e293b; width: 36px; height: 36px; line-height: 36px; border-radius: 50%; text-align: center; margin-right: 8px; font-size: 0.9rem; transition: all 0.3s ease; }
+        .footer-socials a:hover { background-color: var(--accent-2); color: #fff; transform: scale(1.1); text-decoration: none; }
+        /* Footer bottom uses Poppins */
+        .footer-bottom { font-family: 'Poppins', sans-serif; border-top: 1px solid #334155; padding-top: 25px; text-align: center; font-size: 0.85rem; color: #64748b; }
 
 
-        /* --- Animations --- */
-        @keyframes fadeInScaleUp { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes slideDown { from { opacity: 0; transform: translateY(-100%); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes float { 0% { transform: translateY(0px) translateX(0px) rotate(0deg); } 50% { transform: translateY(-25px) translateX(20px) rotate(8deg); } 100% { transform: translateY(0px) translateX(0px) rotate(0deg); } }
+        /* --- Animations (Simplified to Light Theme's fadeInUp) --- */
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        /* Removed float, fadeInScaleUp, slideDown */
 
 
-        /* --- Responsive Design --- */
+        /* --- Responsive Design (Adapted from Light Theme) --- */
         @media (max-width: 992px) {
-             h1 { font-size: 2.4rem; } h2 { font-size: 1.9rem; } section { padding: 70px 0; }
-             .summary-grid { grid-template-columns: 1fr; } /* Stack summary cards */
+             h1 { font-size: 2.4rem; } h2 { font-size: 1.8rem; } section { padding: 60px 0; }
+             #activation-hero { padding: 70px 0 60px 0; }
+             .summary-grid { grid-template-columns: repeat(2, 1fr); }
              .features-list { max-width: 100%; }
 
              /* Responsive Nav */
             .menu-toggle { display: block; position: absolute; right: 20px; top: 50%; transform: translateY(-50%); }
-            .main-nav { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; width: 100%; background: rgba(15, 23, 42, 0.98); padding: 15px 0; backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); text-align: center; }
+            .main-nav { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; width: 100%; background: rgba(255, 255, 255, 0.98); padding: 10px 0; box-shadow: var(--shadow-md); border-top: 1px solid var(--border-color); text-align: center; }
             .main-nav.active { display: flex; }
-            .main-nav a { margin: 10px 20px; padding: 10px 0; width: auto; color: var(--text-secondary);}
-            .main-nav a:hover { color: var(--text-primary); background: rgba(51, 65, 85, 0.3); border-radius: 5px;}
+            .main-nav a { margin: 8px 20px; padding: 8px 0; width: auto; color: var(--text-secondary); }
+            .main-nav a:hover { color: var(--text-primary); background: rgba(226, 232, 240, 0.5); border-radius: 5px;}
             .main-nav a::after { display: none; }
         }
 
         @media (max-width: 768px) {
-             h1 { font-size: 2.2rem; } h2 { font-size: 1.8rem; }
-             #activation-hero p.subtitle { font-size: 1.15rem; }
+             h1 { font-size: 2.1rem; } h2 { font-size: 1.6rem; }
+             #activation-hero p.subtitle { font-size: 1.1rem; }
              .activation-steps { flex-direction: column; align-items: center; }
-             .activation-steps .btn { width: 80%; max-width: 350px; }
-             .activation-explanation { font-size: 1rem; line-height: 1.9; }
-             .how-it-works-grid { grid-template-columns: 1fr; }
+             .activation-steps .btn { width: 80%; max-width: 300px; }
+             .activation-explanation { font-size: 1rem; line-height: 1.8; padding: 15px 20px;}
+             .summary-grid { grid-template-columns: 1fr; gap: 20px;}
              .feature-item-unlock { flex-direction: column; align-items: center; text-align: center; gap: 15px; padding: 25px 20px;}
-             .faq-question { padding: 18px 20px; font-size: 1rem;}
+             .feature-unlock-icon { margin-bottom: 10px; margin-top: 0; }
+             .faq-question { padding: 15px 20px; font-size: 1rem;}
              .faq-answer { padding: 0 20px 0 20px; }
              .faq-answer.active { padding-top: 15px; padding-bottom: 20px;}
              .footer-content { text-align: center; }
-             .footer-col { flex-basis: 100%; margin-bottom: 30px; align-items: center; }
+             .footer-col { flex-basis: 100%; margin-bottom: 30px; display: flex; flex-direction: column; align-items: center; }
              .footer-col h4::after { left: 50%; transform: translateX(-50%); }
              .footer-col ul li a:hover { padding-left: 0; }
              .support-buttons { flex-direction: column; align-items: center; }
-             .support-buttons .btn { width: 80%; max-width: 300px; margin-bottom: 10px; }
+             .support-buttons .btn { width: 80%; max-width: 280px; margin-bottom: 10px; }
         }
 
         @media (max-width: 576px) {
              body { font-size: 15px; }
-             h1 { font-size: 2rem; } h2 { font-size: 1.6rem; } h3 { font-size: 1.1rem; }
-             .logo { font-size: 1.4rem; }
+             h1 { font-size: 1.9rem; } h2 { font-size: 1.5rem; } h3 { font-size: 1.1rem; }
+             .logo { font-size: 1.3rem; }
              .container, .container-narrow { padding: 0 15px; }
-             section { padding: 60px 0; }
-             #activation-hero { padding: 80px 0 60px 0; }
-             #activation-hero .icon-wrapper { width: 70px; height: 70px; font-size: 2.5rem; margin-bottom: 25px;}
-             #activation-hero p.subtitle { font-size: 1.1rem; }
-             .activation-steps .btn { font-size: 0.9rem; padding: 12px 25px;}
-             .activation-explanation { font-size: 0.95rem; line-height: 1.8; margin-top: 30px; }
-             .summary-card { padding: 25px 20px; }
-             .summary-card p { font-size: 0.95rem; }
-             .feature-item-unlock { padding: 20px; }
-             .feature-unlock-content p { font-size: 0.9rem; }
-             .faq-question { padding: 15px; font-size: 0.95rem;}
+             section { padding: 50px 0; }
+             #activation-hero { padding: 60px 0 50px 0; }
+             #activation-hero .icon-wrapper { width: 65px; height: 65px; font-size: 2.4rem; margin-bottom: 20px;}
+             #activation-hero p.subtitle { font-size: 1rem; }
+             .activation-steps .btn { font-size: 0.9rem; padding: 10px 25px; width: 85%; max-width: 280px; }
+             .activation-explanation { font-size: 0.95rem; line-height: 1.8; margin-top: 25px; padding: 15px; }
+             .content-card, .summary-card, .feature-item-unlock { padding: 25px 20px; } /* Consistent padding */
+             .summary-card p { font-size: 0.9rem; }
+             .feature-unlock-content p { font-size: 0.85rem; }
+             .faq-question { padding: 14px 15px; font-size: 0.95rem;}
              .faq-answer { padding: 0 15px 0 15px; }
-             .faq-answer.active { padding-top: 15px; padding-bottom: 15px;}
+             .faq-answer.active { padding-top: 10px; padding-bottom: 15px;}
              .faq-answer p { font-size: 0.9rem; }
-             #start-earning-cta, #activation-support { padding: 50px 0; }
-             #activation-support p { font-size: 1rem; }
+             #start-earning-cta, #activation-support { padding: 45px 0; }
+             #activation-support p { font-size: 0.95rem; }
         }
 
     </style>
 </head>
 <body>
-    <!-- Abstract Background Shapes -->
-    <div class="shape shape-1"></div>
-    <div class="shape shape-2"></div>
-    <!-- <div class="shape shape-3"></div> --> <!-- Shape 3 was mentioned but not defined, commented out -->
+    <!-- No abstract shapes in this theme -->
 
-    <!-- Header (Kept English as requested) -->
+    <!-- Header (Light Theme) -->
     <header class="main-header">
         <div class="container">
-            <a href="/" class="logo"><i class="fas fa-wallet" style="color: #2dd4bf;"></i> Your<span>Inspire</span>IT</a>
+             <!-- Updated logo to match light theme style -->
+             <a href="/" class="logo"><i class="fas fa-wallet"></i> Your<span>Inspire</span>IT</a>
             <button class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation">
                 <i class="fas fa-bars"></i>
             </button>
              <nav class="main-nav" id="main-nav">
-                <a href="/">Wallet</a>
-                <a href="https://YrInspireIT.github.io/faq">FAQ</a>
-                <a href="/active-account" class="active-nav">Activate Account</a>
-                <a href="/login">Login</a>
-                <a href="https://YrInspireIT.github.io">Main Site</a>
+                <a href="/">Wallet</a> <!-- Kept English -->
+                <a href="https://YrInspireIT.github.io/faq">FAQ</a> <!-- Kept English -->
+                <!-- Mark page active using class -->
+                <a href="#" class="active-nav">Activate Account</a> <!-- Kept English -->
+                <a href="https://YrInspireIT.github.io/">Main Site</a> <!-- Kept English -->
              </nav>
         </div>
     </header>
 
     <main>
-        <!-- Activation Hero Section -->
+        <!-- Activation Hero Section (Light Theme) -->
         <section id="activation-hero">
             <div class="container">
                 <div class="icon-wrapper">
-                    <i class="fas fa-envelope-open-text"></i>
+                     <!-- Icon changed to match first light theme example -->
+                    <i class="fas fa-user-check"></i>
                 </div>
                 <h1>Activate Your Account</h1> <!-- Heading kept English -->
+                <!-- Removed the "Hello User" line -->
                 <p class="subtitle">অনলাইন ইনকামের পথে আপনাকে স্বাগতম! শুধু মাত্র আর একটি ধাপ। একাউন্ট এক্টিভ করতে নিচের বাটনে ক্লিক করুন!</p>
                 <div class="activation-steps">
-                    <!-- Note: These buttons are guides for the user; actual functionality needs backend -->
-                    <a href="/login" class="btn"><i class="fas fa-check-circle"></i>Active Account</a> <!-- Button kept English -->
-                    <a href="contact.html" class="btn btn-outline" style="display: none;"><i class="fas fa-redo-alt"></i> Didn't Receive Email?</a> <!-- Button kept English -->
-                    <!-- Alternate Resend Link (might link to login page or contact) -->
-                    <!-- <a href="auth.html?action=resend" class="btn btn-outline"><i class="fas fa-redo-alt"></i> Resend Activation Link</a> -->
+                    <!-- Updated link to match HTML -->
+                    <a href="https://pay-yourinspireit.github.io/active-account/v2/pay-st/" class="btn"><i class="fas fa-check-circle"></i>Active Account</a> <!-- Button kept English -->
+                    <!-- Hidden email button remains hidden -->
+                     <a href="contact.html" class="btn btn-outline" style="display: none;"><i class="fas fa-redo-alt"></i> Didn't Receive Email?</a>
                 </div>
-                <!-- Added Bengali explanation text -->
-                <div class="activation-explanation"><p>
-                    একাউন্ট এক্টিভিশন ফি টি আপনার একাউন্টের সুরক্ষা হিসেবে কাজ করে, এর মাধ্যমে আমরা বুঝতে পারি আপনি আমাদের সাথে ভালোভাবে কাজ করতে আগ্রহী । আপনার একাউন্টটি হ্যাক হওয়া থেকে এই এক্টিভেশন ফি টি কাজ করে । কারণ একাউন্ট এক্টিভিশন ফি দেওয়া মানে আমাদের VIP লিস্টে চলে আসা৷ আর আমরা আমাদের VIP একাউন্টগুলোকে Passkey ছাড়া লগিং করতে দিই না । একাউন্ট এক্টিভেশন ফি যদি না দেওয়া হয় আপনার একাউন্টটি যিনি রেফার করেছে তিনি হ্যাক করতে পারেন । একাউন্ট এক্টিভেশন ফি ছারা আপনি আমাদের সাথে যুক্ত হতে পারবেন না এনং কাজ করার মাধ্যমে ইনকামও করতে পারবেন না ।<br><br>
+                <!-- Bengali explanation text (Light Theme Box) -->
+                <div class="activation-explanation">
+                    <!-- Placed Bengali text inside <p> tags for correct styling -->
+                    <p>
+                    একাউন্ট এক্টিভিশন ফি টি আপনার একাউন্টের সুরক্ষা হিসেবে কাজ করে, এর মাধ্যমে আমরা বুঝতে পারি আপনি আমাদের সাথে ভালোভাবে কাজ করতে আগ্রহী । আপনার একাউন্টটি হ্যাক হওয়া থেকে এই এক্টিভেশন ফি টি কাজ করে । কারণ একাউন্ট এক্টিভিশন ফি দেওয়া মানে আমাদের VIP লিস্টে চলে আসা৷ আর আমরা আমাদের VIP একাউন্টগুলোকে Passkey ছাড়া লগিং করতে দিই না । একাউন্ট এক্টিভেশন ফি যদি না দেওয়া হয় আপনার একাউন্টটি যিনি রেফার করেছে তিনি হ্যাক করতে পারেন । একাউন্ট এক্টিভেশন ফি ছারা আপনি আমাদের সাথে যুক্ত হতে পারবেন না এনং কাজ করার মাধ্যমে ইনকামও করতে পারবেন না ।
+                    </p>
+                    <p>
                     <b>এই টাকাটি আমরা নিচ্ছি না, এই টাকাটি আপনার একাউন্টে জমা থাকবে।</b> আপনি আপনার প্রথম Withdraw পাওয়ার পরপরই এই টাকাটি Withdraw নিতে পারবেন। এই টাকা দেওয়ার মাধ্যমে আপনার উদার মন মানসিকতার একটি পরিক্ষা নেওয়া হবে এবং এর মাধ্যমে আপনার কাজের প্রতি আগ্রহ বাড়বে। আপনাকে কোনো প্রকার এড ফি দিতে হবে না।
-                </p>
+                    </p>
                 </div>
             </div>
         </section>
 
-         <!-- Why Activate? / Summary Section -->
+         <!-- Why Activate? / Summary Section (Light Theme) -->
          <section id="why-activate">
               <div class="container">
                  <div class="section-title">
@@ -404,26 +442,28 @@
                      <p>একাউন্ট এক্টিভ করা আপনার নিরাপত্তা নিশ্চিত করে এবং Your Inspire IT এর সকল ফিচার আনলক করে।</p>
                  </div>
                  <div class="summary-grid">
-                     <div class="summary-card">
-                         <i class="fas fa-lock summary-icon"></i>
+                     <div class="summary-card"> <!-- Uses standard card style -->
+                          <!-- Icon changed to match first light theme example -->
+                         <i class="fas fa-shield-alt summary-icon"></i>
                          <h3>Enhanced Security</h3> <!-- Heading kept English -->
                          <p>আপনার ইমেইল যাচাই করা আপনার একাউন্টকে অননুমোদিত অ্যাক্সেস থেকে রক্ষা করতে সাহায্য করে।</p>
                      </div>
-                      <div class="summary-card">
+                      <div class="summary-card"> <!-- Uses standard card style -->
                           <i class="fas fa-unlock-alt summary-icon"></i>
                          <h3>Unlock Full Access</h3> <!-- Heading kept English -->
                          <p>সমস্ত কাজের সুযোগ অ্যাক্সেস করুন, আপনার ওয়ালেট পরিচালনা করুন এবং টাকা ইনকাম অথবা উইথড্র করুন।</p>
                      </div>
-                      <div class="summary-card">
-                          <i class="fas fa-users summary-icon"></i>
-                         <h3>Join the Community</h3> <!-- Heading kept English -->
-                         <p>শুধুমাত্র যাচাইকৃত ব্যবহারকারীদের জন্য উপলব্ধ প্ল্যাটফর্ম ফিচারগুলোতে অংশ নিন।</p>
+                      <div class="summary-card"> <!-- Uses standard card style -->
+                          <!-- Icon/Text changed to match first light theme example -->
+                          <i class="fas fa-rocket summary-icon"></i>
+                         <h3>Enable Withdrawals</h3> <!-- Clarified Benefit -->
+                         <p>শুধুমাত্র একটিভ একাউন্ট থেকেই আপনার উপার্জিত অর্থ উত্তোলন করতে পারবেন।</p>
                      </div>
                  </div>
               </div>
          </section>
 
-        <!-- Features Unlocked Section -->
+        <!-- Features Unlocked Section (Light Theme) -->
         <section id="unlocked-features">
              <div class="container-narrow"> <!-- Narrower container for list -->
                  <div class="section-title">
@@ -432,7 +472,7 @@
                  </div>
                  <div class="features-list">
                      <!-- Feature 1 -->
-                     <div class="feature-item-unlock">
+                     <div class="feature-item-unlock"> <!-- Uses adapted card style -->
                          <i class="fas fa-tasks feature-unlock-icon"></i>
                          <div class="feature-unlock-content">
                              <h3>All Task Opportunities</h3> <!-- Heading kept English -->
@@ -440,7 +480,7 @@
                          </div>
                      </div>
                      <!-- Feature 2 -->
-                      <div class="feature-item-unlock">
+                      <div class="feature-item-unlock"> <!-- Uses adapted card style -->
                          <i class="fas fa-wallet feature-unlock-icon"></i>
                          <div class="feature-unlock-content">
                              <h3>Wallet & Withdrawals</h3> <!-- Heading kept English -->
@@ -448,46 +488,51 @@
                          </div>
                      </div>
                      <!-- Feature 3 -->
-                      <div class="feature-item-unlock">
-                         <i class="fas fa-chart-bar feature-unlock-icon"></i>
+                      <div class="feature-item-unlock"> <!-- Uses adapted card style -->
+                          <!-- Icon changed to match first light theme example -->
+                         <i class="fas fa-chart-line feature-unlock-icon"></i>
                          <div class="feature-unlock-content">
                              <h3>Detailed Dashboard</h3> <!-- Heading kept English -->
                              <p>আপনার সম্পূর্ণ উপার্জনের ইতিহাস, কাজের স্থিতি এবং একাউন্টের পরিসংখ্যান দেখুন।</p>
                          </div>
                      </div>
                       <!-- Feature 4 -->
-                      <div class="feature-item-unlock">
-                         <i class="fas fa-comments feature-unlock-icon"></i>
+                      <div class="feature-item-unlock"> <!-- Uses adapted card style -->
+                          <!-- Icon/Text changed to match first light theme example -->
+                         <i class="fas fa-headset feature-unlock-icon"></i>
                          <div class="feature-unlock-content">
-                             <h3>Community Features</h3> <!-- Heading kept English -->
-                             <p>ফোরাম বা অন্যান্য কমিউনিটি কার্যক্রমে অংশগ্রহণ করুন (যদি প্রযোজ্য হয়)।</p>
+                             <h3>Priority Support</h3> <!-- Heading kept English -->
+                             <p>সক্রিয় ব্যবহারকারী হিসেবে দ্রুত ও অগ্রাধিকারমূলক সাপোর্ট সুবিধা পান।</p>
                          </div>
                      </div>
                  </div>
              </div>
         </section>
 
-         <!-- Short About EarnWell -->
+         <!-- Short About Section (Light Theme) -->
         <section id="about-earnwell-short">
             <div class="container">
                 <div class="about-content">
-                     <a href="index.html" class="logo">Your<span>Inspire</span>IT</a> <!-- Logo kept English -->
+                     <!-- Updated logo to match light theme style -->
+                     <a href="index.html" class="logo"><i class="fas fa-wallet"></i> Your<span>Inspire</span>IT</a>
                     <p>Your Inspire IT এমন ব্যক্তিদের সাথে ব্যবসার সংযোগ স্থাপন করে যারা সহজ অনলাইন কাজ খুঁজছেন এবং যাদের মানসম্পন্ন কাজ সম্পন্ন করার প্রয়োজন। আমরা আমাদের বিশ্বব্যাপী ব্যবহারকারীদের জন্য একটি নিরাপদ, স্বচ্ছ এবং লাভজনক প্ল্যাটফর্ম প্রদান করতে প্রতিশ্রুতিবদ্ধ।</p>
                     <a href="https://YrInspireIT.github.io/about" class="btn btn-outline" style="margin-top: 20px; width: auto;">Learn More About Us</a> <!-- Button kept English -->
                 </div>
             </div>
         </section>
 
-        <!-- Work With Us / Start Earning CTA -->
+        <!-- Start Earning CTA (Light Theme) -->
          <section id="start-earning-cta">
             <div class="container">
-                <h2>Ready to Start Earning?</h2> <!-- Heading kept English -->
-                <p>আপনার একাউন্ট এক্টিভ হয়ে গেলে, উপলব্ধ কাজগুলিতে মনোযোগ দিন এবং আপনার সময়কে উপার্জনে রূপান্তরিত করা শুরু করুন!</p>
-                <a href="https://YrInspireIT.github.io/login" class="btn"><i class="fas fa-sign-in-alt"></i> Login After Activation</a> <!-- Button kept English -->
+                 <div class="section-title">
+                    <h2>Ready to Start Earning?</h2> <!-- Heading kept English -->
+                    <p>আপনার একাউন্ট এক্টিভ হয়ে গেলে, উপলব্ধ কাজগুলিতে মনোযোগ দিন এবং আপনার সময়কে উপার্জনে রূপান্তরিত করা শুরু করুন!</p>
+                    <a href="https://YrInspireIT.github.io/login" class="btn"><i class="fas fa-sign-in-alt"></i> Login After Activation</a> <!-- Button kept English -->
+                 </div>
             </div>
         </section>
 
-        <!-- FAQ Section (Activation Focused) -->
+        <!-- FAQ Section (Activation Focused - Light Theme) -->
         <section id="activation-faq">
             <div class="container-narrow">
                  <div class="section-title">
@@ -495,19 +540,20 @@
                     <p>একাউন্ট এক্টিভেশন প্রক্রিয়া সম্পর্কে সাধারণ প্রশ্নগুলির উত্তর খুঁজুন।</p>
                 </div>
                 <div class="faq-container">
+                     <!-- Updated FAQ content to match first light theme example -->
                     <!-- FAQ Item 1 -->
-                    <div class="faq-item"> <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-a1"> <span>Why do I need to activate my account?</span> <i class="fas fa-chevron-down"></i> </button> <div class="faq-answer" id="faq-answer-a1"> <p>একাউন্ট এক্টিভেশন যাচাই করে যে আপনি নিবন্ধনের জন্য ব্যবহৃত ইমেইল ঠিকানার মালিক। এটি আপনার একাউন্ট রক্ষা করার এবং Your Inspire IT থেকে গুরুত্বপূর্ণ যোগাযোগ নিশ্চিত করার জন্য একটি অত্যন্ত গুরুত্বপূর্ণ নিরাপত্তা পদক্ষেপ।</p> </div> </div>
+                    <div class="faq-item"> <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-a1"> <span>Why do I need to activate my account?</span> <i class="fas fa-chevron-down"></i> </button> <div class="faq-answer" id="faq-answer-a1"> <p>একাউন্ট এক্টিভেশন আপনার পরিচয় যাচাই করে, নিরাপত্তা বৃদ্ধি করে এবং নিশ্চিত করে যে শুধুমাত্র প্রকৃত ব্যবহারকারীরা প্ল্যাটফর্ম ব্যবহার করছেন। এটি প্রতারণা রোধ করতে এবং সমস্ত বৈশিষ্ট্য যেমন উপার্জন ও উত্তোলন আনলক করতে সহায়তা করে।</p> </div> </div>
                     <!-- FAQ Item 2 -->
-                     <div class="faq-item"> <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-a2"> <span>I didn't receive the activation email. What should I do?</span> <i class="fas fa-chevron-down"></i> </button> <div class="faq-answer" id="faq-answer-a2"> <p>১. আপনার স্প্যাম বা জাঙ্ক ফোল্ডার চেক করুন।<br>২. নিশ্চিত করুন যে আপনি সাইন আপ করার সময় সঠিক ইমেইল ঠিকানা দিয়েছেন।<br>৩. কয়েক মিনিট অপেক্ষা করুন, কারণ ইমেইল আসতে মাঝে মাঝে দেরি হতে পারে।<br>৪. যদি আপনি এখনও এটি না পেয়ে থাকেন, তাহলে অনুগ্রহ করে 'এক্টিভেশন লিঙ্ক পুনরায় পাঠান' বিকল্পটি ব্যবহার করুন (যদি লগইনে উপলব্ধ থাকে) অথবা আমাদের সাপোর্ট টিমের সাথে যোগাযোগ করুন।</p> </div> </div>
+                     <div class="faq-item"> <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-a2"> <span>What is the activation fee for?</span> <i class="fas fa-chevron-down"></i> </button> <div class="faq-answer" id="faq-answer-a2"> <p>বিস্তারিত জানার জন্য উপরে "Activation Explanation" অংশটি দেখুন। সংক্ষেপে, এটি একটি নিরাপত্তা আমানত যা আপনার একাউন্টের ব্যালেন্সে যোগ করা হয় এবং এটি যাচাই করে যে আপনি প্ল্যাটফর্মে কাজ করতে আগ্রহী। আপনি প্রথমবার টাকা তোলার সময় এটি ফেরতযোগ্য।</p> </div> </div>
                     <!-- FAQ Item 3 -->
-                    <div class="faq-item"> <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-a3"> <span>The activation link expired or doesn't work.</span> <i class="fas fa-chevron-down"></i> </button> <div class="faq-answer" id="faq-answer-a3"> <p>নিরাপত্তার কারণে এক্টিভেশন লিঙ্কগুলির সাধারণত একটি সময়সীমা থাকে। যদি আপনার লিঙ্কের মেয়াদ শেষ হয়ে যায় বা কাজ না করে, অনুগ্রহ করে প্রথমে আপনার একাউন্টে লগইন করার চেষ্টা করুন। প্রায়শই, সিস্টেম আপনাকে একটি নতুন এক্টিভেশন লিঙ্ক পুনরায় পাঠানোর জন্য অনুরোধ করবে। যদি সেটি কাজ না করে, সহায়তার জন্য সাপোর্টে যোগাযোগ করুন।</p> </div> </div>
+                    <div class="faq-item"> <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-a3"> <span>How do I complete the activation?</span> <i class="fas fa-chevron-down"></i> </button> <div class="faq-answer" id="faq-answer-a3"> <p>এই পৃষ্ঠায় "Active Account" বোতামে ক্লিক করে আপনার একাউন্টে লগইন করুন। লগইন করার পরে, আপনাকে এক্টিভেশন প্রক্রিয়া সম্পন্ন করার জন্য নির্দেশাবলী দেখানো হবে, যার মধ্যে সাধারণত নিরাপত্তা ফি প্রদান অন্তর্ভুক্ত থাকে।</p> </div> </div>
                      <!-- FAQ Item 4 -->
-                     <div class="faq-item"> <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-a4"> <span>Can I start working before activating?</span> <i class="fas fa-chevron-down"></i> </button> <div class="faq-answer" id="faq-answer-a4"> <p>সাধারণত, না। প্ল্যাটফর্মের বেশিরভাগ বৈশিষ্ট্য অ্যাক্সেস করার জন্য, যেমন কাজগুলিতে অংশগ্রহণ করা এবং আপনার ওয়ালেট পরিচালনা করার জন্য, একাউন্ট এক্টিভেশন প্রয়োজন। এক্টিভেশন নিশ্চিত করে যে আপনার একাউন্টটি সুরক্ষিত এবং সম্পূর্ণরূপে কার্যকরী।</p> </div> </div>
+                     <div class="faq-item"> <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-a4"> <span>Can I start working before activating?</span> <i class="fas fa-chevron-down"></i> </button> <div class="faq-answer" id="faq-answer-a4"> <p>না। প্ল্যাটফর্মের সম্পূর্ণ বৈশিষ্ট্য, যেমন কাজ করা, উপার্জন করা এবং টাকা উত্তোলন করা, অ্যাক্সেস করার জন্য আপনাকে অবশ্যই আপনার একাউন্টটি এক্টিভেট করতে হবে। এক্টিভেশন নিশ্চিত করে যে আপনার একাউন্টটি নিরাপদ এবং সম্পূর্ণরূপে কার্যকরী।</p> </div> </div>
                 </div>
             </div>
         </section>
 
-        <!-- Support Section -->
+        <!-- Support Section (Light Theme) -->
         <section id="activation-support">
             <div class="container">
                 <h2>Still Having Trouble?</h2> <!-- Heading kept English -->
@@ -521,13 +567,14 @@
 
     </main>
 
-    <!-- Footer (Kept English as requested) -->
+    <!-- Footer (Light Theme's Dark Footer) -->
      <footer class="main-footer">
         <div class="container">
             <div class="footer-content">
                  <div class="footer-col"><h4>About Us</h4><ul><li><a href="https://YrInspireIT.github.io/about">Our Mission</a></li><li><a href="https://YrInspireIT.github.io/#how-it-works">How it Works</a></li><li><a href="https://YrInspireIT.github.io/error">Blog</a></li></ul></div>
                  <div class="footer-col"><h4>Support</h4><ul><li><a href="https://YrInspireIT.github.io/faq">Help Center / FAQ</a></li><li><a href="https://YrInspireIT.github.io/contact">Contact Us</a></li><li><a href="https://YrInspireIT.github.io/report">Report</a></li><li><a href="https://YrInspireIT.github.io/error">Payment Info</a></li></ul></div>
                  <div class="footer-col"><h4>Legal & Transparency</h4><ul><li><a href="https://YrInspireIT.github.io/error">Terms of Service</a></li><li><a href="https://YrInspireIT.github.io/error">Privacy Policy</a></li><li><a href="https://YrInspireIT.github.io/error">Cookie Policy</a></li><li><a href="https://YrInspireIT.github.io/error">Earning Disclaimer</a></li></ul></div>
+                 <!-- Socials still hidden -->
                  <div class="footer-col" style="display: none;"><h4>Connect With Us</h4><div class="footer-socials"><a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a><a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a><a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a></div></div>
             </div>
             <div class="footer-bottom">
@@ -544,63 +591,111 @@
             menuToggle.addEventListener('click', () => {
                 mainNav.classList.toggle('active');
                 const icon = menuToggle.querySelector('i');
-                icon.classList.toggle('fa-bars');
-                icon.classList.toggle('fa-times');
+                // Use classes consistent with light theme example
+                if (mainNav.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                    menuToggle.setAttribute('aria-expanded', 'true');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                    menuToggle.setAttribute('aria-expanded', 'false');
+                }
             });
+             // Optional: Close menu when a link inside is clicked (from light theme)
+            mainNav.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (mainNav.classList.contains('active')) {
+                         mainNav.classList.remove('active');
+                         const icon = menuToggle.querySelector('i');
+                         icon.classList.remove('fa-times');
+                         icon.classList.add('fa-bars');
+                         menuToggle.setAttribute('aria-expanded', 'false');
+                    }
+                });
+             });
         }
 
-         // --- FAQ Accordion ---
+        // --- FAQ Accordion (Using Logic from Light Theme for consistency) ---
         const faqQuestions = document.querySelectorAll('.faq-question');
         faqQuestions.forEach(button => {
             button.addEventListener('click', () => {
                 const answer = document.getElementById(button.getAttribute('aria-controls'));
                 const isActive = button.getAttribute('aria-expanded') === 'true';
 
-                // Close other open FAQs
+                // Close other open FAQs first (optional, good for usability)
                 if (!isActive) {
                     faqQuestions.forEach(otherButton => {
                         if (otherButton !== button && otherButton.getAttribute('aria-expanded') === 'true') {
                             otherButton.setAttribute('aria-expanded', 'false');
                             otherButton.classList.remove('active');
                             const otherAnswer = document.getElementById(otherButton.getAttribute('aria-controls'));
-                            otherAnswer.classList.remove('active');
+                            otherAnswer.classList.remove('active'); // Also remove active class from answer
                             otherAnswer.style.maxHeight = '0';
-                            otherAnswer.hidden = true;
-                            const otherIcon = otherButton.querySelector('i');
-                            otherIcon.classList.remove('fa-chevron-up');
-                            otherIcon.classList.add('fa-chevron-down');
+                            otherAnswer.style.paddingTop = '0';
+                            otherAnswer.style.paddingBottom = '0';
+                             otherAnswer.hidden = true; // Accessibility
+                             const otherIcon = otherButton.querySelector('i');
+                             if(otherIcon) {
+                                otherIcon.classList.remove('fa-chevron-up'); // Changed to chevron
+                                otherIcon.classList.add('fa-chevron-down');
+                             }
                         }
                     });
                 }
 
                 // Toggle current FAQ
-                button.setAttribute('aria-expanded', !isActive);
-                answer.hidden = isActive;
-                button.classList.toggle('active');
-                answer.classList.toggle('active');
+                const currentlyExpanded = !isActive;
+                button.setAttribute('aria-expanded', currentlyExpanded);
+                button.classList.toggle('active', currentlyExpanded);
+                answer.classList.toggle('active', currentlyExpanded);
+                answer.hidden = !currentlyExpanded; // Accessibility
                 const icon = button.querySelector('i');
-                icon.classList.toggle('fa-chevron-down');
-                icon.classList.toggle('fa-chevron-up');
+                 if(icon) {
+                    icon.classList.toggle('fa-chevron-down', !currentlyExpanded);
+                    icon.classList.toggle('fa-chevron-up', currentlyExpanded); // Changed to chevron
+                 }
 
-                if (!isActive) {
-                     // Set max-height after a tiny delay to allow CSS transition
-                    //  requestAnimationFrame(() => {
-                         answer.style.maxHeight = answer.scrollHeight + 'px';
-                    //  });
+                if (currentlyExpanded) {
+                    answer.style.paddingTop = '15px'; // Match CSS
+                    answer.style.paddingBottom = '20px'; // Match CSS
+                    answer.style.maxHeight = answer.scrollHeight + 'px';
                  } else {
-                     answer.style.maxHeight = '0';
+                    answer.style.maxHeight = '0';
+                    // Delay removing padding until after collapse transition (optional)
+                    // setTimeout(() => {
+                        answer.style.paddingTop = '0';
+                        answer.style.paddingBottom = '0';
+                    // }, 350); // Match transition duration
                  }
             });
-             // Initialize state
+
+            // Initialize state based on HTML aria-expanded
             const initialAnswer = document.getElementById(button.getAttribute('aria-controls'));
-            if (button.getAttribute('aria-expanded') === 'false') {
-                initialAnswer.hidden = true; initialAnswer.style.maxHeight = '0';
-                button.querySelector('i').classList.add('fa-chevron-down'); button.querySelector('i').classList.remove('fa-chevron-up');
+            const isInitiallyExpanded = button.getAttribute('aria-expanded') === 'true';
+            const initialIcon = button.querySelector('i');
+
+            initialAnswer.hidden = !isInitiallyExpanded;
+             if (isInitiallyExpanded) {
+                button.classList.add('active');
+                initialAnswer.classList.add('active');
+                 initialAnswer.style.paddingTop = '15px';
+                 initialAnswer.style.paddingBottom = '20px';
+                initialAnswer.style.maxHeight = initialAnswer.scrollHeight + 'px';
+                 if(initialIcon) {
+                    initialIcon.classList.remove('fa-chevron-down');
+                    initialIcon.classList.add('fa-chevron-up'); // Changed to chevron
+                 }
             } else {
-                 initialAnswer.hidden = false; initialAnswer.style.maxHeight = initialAnswer.scrollHeight + 'px';
-                 button.querySelector('i').classList.add('fa-chevron-up'); button.querySelector('i').classList.remove('fa-chevron-down');
-                 button.classList.add('active'); // Ensure initially open items have active class
-                 initialAnswer.classList.add('active');
+                 button.classList.remove('active');
+                 initialAnswer.classList.remove('active');
+                 initialAnswer.style.maxHeight = '0';
+                 initialAnswer.style.paddingTop = '0';
+                 initialAnswer.style.paddingBottom = '0';
+                 if(initialIcon) {
+                    initialIcon.classList.remove('fa-chevron-up'); // Changed to chevron
+                    initialIcon.classList.add('fa-chevron-down');
+                 }
             }
         });
 
@@ -617,24 +712,60 @@
             return null;
         }
 
-        // --- রিডাইরেকশন লজিক ---
+        // --- রিডাইরেকশন লজিক (Based on first example's logic) ---
+        // This version redirects *TO* pay-yourinspireit if the cookie exists
+        // and stays on this page if it doesn't.
         (function() {
             const cookieNameToCheck = 'walletSessionUser'; // যে কুকির নাম চেক করতে চান
-            const redirectUrl = 'https://pay-yourinspireit.github.io/active-account/v2'; // যেখানে রিডাইরেক্ট করতে চান
+            // ** IMPORTANT: Set the CORRECT redirect URL based on your logic needs **
+            // Option 1: Redirect *TO* payment if cookie exists (like original logic)
+            const redirectUrl = 'https://pay-yourinspireit.github.io/active-account/v2/pay-st/';
+            // Option 2: Redirect *TO* login if cookie does NOT exist
+            // const loginPageUrl = 'https://yrinspireit.github.io/login';
 
             const userSession = getCookie(cookieNameToCheck);
 
+            // --- Logic based on first example (Redirect IF cookie found) ---
             if (userSession && userSession !== '') {
-                // কুকি পাওয়া গেছে এবং খালি নয়
-                console.log(`Cookie '${cookieNameToCheck}' found with value '${userSession}'. Redirecting to ${redirectUrl}`);
-                window.location.href = redirectUrl;
+                console.log(`Cookie '${cookieNameToCheck}' found. Redirecting to ${redirectUrl}`);
+                 window.location.href = redirectUrl;
             } else {
-                // কুকি পাওয়া যায়নি অথবা খালি
-                console.log(`Cookie '${cookieNameToCheck}' not found or is empty. No redirect.`);
-                // এখানে আপনি চাইলে অন্য কোনো কাজ করতে পারেন, যেমন লগইন ফর্ম দেখানো
+                console.log(`Cookie '${cookieNameToCheck}' not found or is empty. Showing current page.`);
+                // No redirection needed, stay here.
+                // You could optionally display the user ID here if needed,
+                // but the element #loggedInUserIdDisplay was removed from HTML.
             }
-        })(); // ফাংশনটি অবিলম্বে কল করা হচ্ছে (Immediately Invoked Function Expression - IIFE)
 
+             // --- Alternative Logic: Redirect to LOGIN if cookie NOT found ---
+            /*
+            if (!(userSession && userSession !== '')) {
+                console.log(`Cookie '${cookieNameToCheck}' not found or empty. Redirecting to login: ${loginPageUrl}`);
+                window.location.href = loginPageUrl;
+            } else {
+                 console.log(`Cookie '${cookieNameToCheck}' found. Showing current page.`);
+                 // Display user ID if element exists and is needed
+                 const userIdDisplaySpan = document.getElementById('loggedInUserIdDisplay');
+                 if (userIdDisplaySpan) {
+                     userIdDisplaySpan.textContent = userSession;
+                 }
+            }
+            */
+        })(); // ফাংশনটি অবিলম্বে কল করা হচ্ছে (IIFE)
+
+
+        // --- ঐচ্ছিক: লগআউট ফাংশন (যদি প্রয়োজন হয়) ---
+        function deleteCookie(name) {
+            document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT; SameSite=Lax; Secure';
+            console.log("Cookie deleted:", name);
+        }
+
+        function logout() {
+            const cookieNameToDelete = 'walletSessionUser';
+            deleteCookie(cookieNameToDelete);
+            // লগআউটের পর এই পেজ বা লগইন পেজে পাঠান
+            window.location.href = window.location.pathname; // Reload current page or redirect to login
+            // window.location.href = 'https://yrinspireit.github.io/login';
+        }
 
     </script>
 

@@ -413,7 +413,13 @@
                     <i class="fas fa-user-check"></i>
                 </div>
                 <h1>Activate Your Account</h1> <!-- Heading kept English -->
-                <!-- Removed the "Hello User" line -->
+           
+           
+     <div id="userInfo" <!--  -->
+        <p>Hello: <strong id="loggedInUserName"></strong></p>
+     
+        <!-- এখানে পেজের বাকি কন্টেন্ট যোগ করুন -->
+    </div>
                 <p class="subtitle">অনলাইন ইনকামের পথে আপনাকে স্বাগতম! শুধু মাত্র আর একটি ধাপ। একাউন্ট এক্টিভ করতে নিচের বাটনে ক্লিক করুন!</p>
                 <div class="activation-steps">
                     <!-- Updated link to match HTML -->
@@ -700,72 +706,66 @@
         });
 
 
-        // --- প্রয়োজনীয়: কুকি পড়ার ফাংশন ---
+// --- কুকি ফাংশন (একটি নির্দিষ্ট নামের কুকি খুঁজে বের করার জন্য) ---
         function getCookie(name) {
             const nameEQ = name + "=";
-            const ca = document.cookie.split(';');
+            const ca = document.cookie.split(';'); // সব কুকি ';' দিয়ে ভাগ করে একটি অ্যারে তৈরি করা হয়
             for(let i = 0; i < ca.length; i++) {
                 let c = ca[i];
+                // কুকির নামের আগে থাকা স্পেস মুছে ফেলা হয়
                 while (c.charAt(0) == ' ') c = c.substring(1, c.length);
-                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+                // যদি কুকির নাম মিলে যায়
+                if (c.indexOf(nameEQ) == 0) {
+                    // কুকির মান ডিকোড করে ফেরত পাঠানো হয়
+                    return decodeURIComponent(c.substring(nameEQ.length, c.length));
+                }
             }
+            // যদি নির্দিষ্ট নামের কুকি খুঁজে না পাওয়া যায়
             return null;
         }
 
-        // --- রিডাইরেকশন লজিক (Based on first example's logic) ---
-        // This version redirects *TO* pay-yourinspireit if the cookie exists
-        // and stays on this page if it doesn't.
-        (function() {
-            const cookieNameToCheck = 'walletSessionUser'; // যে কুকির নাম চেক করতে চান
-            // ** IMPORTANT: Set the CORRECT redirect URL based on your logic needs **
-            // Option 1: Redirect *TO* payment if cookie exists (like original logic)
-            const redirectUrl = 'https://pay-yourinspireit.github.io/active-account/v2/pay-st/';
-            // Option 2: Redirect *TO* login if cookie does NOT exist
-            // const loginPageUrl = 'https://yrinspireit.github.io/login';
+        // --- পেজ লোড হওয়ার পর এই ফাংশনটি চলবে ---
+        window.onload = function() {
+            // ***** গুরুত্বপূর্ণ: আপনার লগইন সেশন কুকির সঠিক নামটি এখানে দিন *****
+            const loginCookieName = 'walletSessionUser'; // লগইন কুকির নাম
 
-            const userSession = getCookie(cookieNameToCheck);
+            // ***** গুরুত্বপূর্ণ: আপনার ওয়ালেট লগইন পেজের সঠিক URL দিন *****
+            const loginPageURL = 'https://pay-yourinspireit.github.io'; // লগইন পেজের URL
 
-            // --- Logic based on first example (Redirect IF cookie found) ---
-            if (userSession && userSession !== '') {
-                console.log(`Cookie '${cookieNameToCheck}' found. Redirecting to ${redirectUrl}`);
-                 window.location.href = redirectUrl;
+            // নির্দিষ্ট নামের কুকি খোঁজা হচ্ছে
+            const loggedInUser = getCookie(loginCookieName);
+
+            if (!loggedInUser) {
+                // ১. কুকি পাওয়া যায়নি (ব্যবহারকারী লগইন করা নেই)
+                console.log(`কুকি "${loginCookieName}" খুঁজে পাওয়া যায়নি। লগইন পেজে রিডাইরেক্ট করা হচ্ছে...`);
+                // ব্যবহারকারীকে লগইন পেজে পাঠানো হচ্ছে
+                window.location.href = loginPageURL;
             } else {
-                console.log(`Cookie '${cookieNameToCheck}' not found or is empty. Showing current page.`);
-                // No redirection needed, stay here.
-                // You could optionally display the user ID here if needed,
-                // but the element #loggedInUserIdDisplay was removed from HTML.
+                // ২. কুকি পাওয়া গেছে (ব্যবহারকারী লগইন করা আছে)
+                console.log(`"${loginCookieName}" কুকি পাওয়া গেছে। ব্যবহারকারীর নাম: ${loggedInUser}`);
+
+                // যেখানে ইউজারের নাম দেখানো হবে, সেই HTML এলিমেন্টটি খুঁজে বের করা
+                const userNameElement = document.getElementById('loggedInUserName');
+                const userInfoDiv = document.getElementById('userInfo');
+
+                if (userNameElement && userInfoDiv) {
+                    // বেসিক স্যানিটাইজেশন: HTML ট্যাগ (<, >) নিষ্ক্রিয় করা হচ্ছে যাতে ক্রস-সাইট স্ক্রিপ্টিং (XSS) কিছুটা প্রতিরোধ করা যায়
+                    // '<' কে '<' এবং '>' কে '>' দিয়ে প্রতিস্থাপন করা হয়
+                    const sanitizedUserName = loggedInUser.replace(/</g, "<").replace(/>/g, ">");
+
+                    // এলিমেন্টের ভেতরে ইউজারের নাম দেখানো হচ্ছে
+                    userNameElement.textContent = sanitizedUserName;
+                    // ব্যবহারকারীর তথ্যসহ ডিভটি দৃশ্যমান করা হচ্ছে
+                    userInfoDiv.style.display = 'block';
+
+                    console.log(`ব্যবহারকারী "${sanitizedUserName}" এর জন্য পৃষ্ঠা লোড হয়েছে।`);
+
+                } else {
+                    console.error('ত্রুটি: ইউজারনেম দেখানোর জন্য প্রয়োজনীয় HTML এলিমেন্ট (id="loggedInUserName" বা id="userInfo") খুঁজে পাওয়া যায়নি।');
+                }
             }
+        };
 
-             // --- Alternative Logic: Redirect to LOGIN if cookie NOT found ---
-            /*
-            if (!(userSession && userSession !== '')) {
-                console.log(`Cookie '${cookieNameToCheck}' not found or empty. Redirecting to login: ${loginPageUrl}`);
-                window.location.href = loginPageUrl;
-            } else {
-                 console.log(`Cookie '${cookieNameToCheck}' found. Showing current page.`);
-                 // Display user ID if element exists and is needed
-                 const userIdDisplaySpan = document.getElementById('loggedInUserIdDisplay');
-                 if (userIdDisplaySpan) {
-                     userIdDisplaySpan.textContent = userSession;
-                 }
-            }
-            */
-        })(); // ফাংশনটি অবিলম্বে কল করা হচ্ছে (IIFE)
-
-
-        // --- ঐচ্ছিক: লগআউট ফাংশন (যদি প্রয়োজন হয়) ---
-        function deleteCookie(name) {
-            document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT; SameSite=Lax; Secure';
-            console.log("Cookie deleted:", name);
-        }
-
-        function logout() {
-            const cookieNameToDelete = 'walletSessionUser';
-            deleteCookie(cookieNameToDelete);
-            // লগআউটের পর এই পেজ বা লগইন পেজে পাঠান
-            window.location.href = window.location.pathname; // Reload current page or redirect to login
-            // window.location.href = 'https://yrinspireit.github.io/login';
-        }
 
     </script>
 
